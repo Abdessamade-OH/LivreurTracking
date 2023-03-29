@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" prefHeight="222.0" prefWidth="403.0" spacing="10.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ma.fstt.livreur.MenuController">
+   <children>
+       <Button onAction="#onProdButtonClick" prefHeight="22.0" prefWidth="116.0" text="Produits" />
+   
+          <Button onAction="#onLivButtonClick" prefHeight="22.0" prefWidth="116.0" text="Livreurs" />
+   </children>
+</VBox>
