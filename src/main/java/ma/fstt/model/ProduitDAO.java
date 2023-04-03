@@ -25,7 +25,14 @@ public class ProduitDAO extends BaseDAO<Produit> {
 
     @Override
     public void update(Produit object) throws SQLException {
+        String request = "update produit set prix = ?,  nom = ?, description = ? where id_produit = ?";
+        this.preparedStatement = this.connection.prepareStatement(request);
+        this.preparedStatement.setFloat(1, object.getPrix());
+        this.preparedStatement.setString(2, object.getNom());
+        this.preparedStatement.setString(3, object.getDescription());
+        this.preparedStatement.setLong(4, object.getId_produit());
 
+        this.preparedStatement.execute();
     }
 
     @Override
@@ -60,6 +67,11 @@ public class ProduitDAO extends BaseDAO<Produit> {
 
     @Override
     public Produit getOne(Long id) throws SQLException {
-        return null;
+        String request = "Select from produit where id_produit = (?)";
+        this.preparedStatement = this.connection.prepareStatement(request);
+        this.preparedStatement.setLong(1, id);
+
+        this.resultSet = preparedStatement.executeQuery();
+        return (Produit) resultSet.getObject(0);
     }
 }

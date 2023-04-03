@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="270.0" prefWidth="330.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ma.fstt.livreur.AddProduitController">
+<AnchorPane prefHeight="270.0" prefWidth="330.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ma.fstt.livreur.AddEditProduitController">
     <children>
         <GridPane layoutX="14.0" layoutY="68.0" prefHeight="142.0" prefWidth="305.0">
             <columnConstraints>
@@ -31,7 +31,7 @@
                 <Button layoutX="125.0" layoutY="18.0" mnemonicParsing="false" onAction="#onCancelButtonClick" text="Cancel" />
             </buttons>
         </ButtonBar>
-        <Label layoutX="76.0" layoutY="28.0" prefHeight="40.0" prefWidth="190.0" text="Ajouter nouveau Produit" textAlignment="CENTER">
+        <Label fx:id="opLabel" layoutX="76.0" layoutY="28.0" prefHeight="40.0" prefWidth="190.0" text="Ajouter nouveau Produit" textAlignment="CENTER">
          <font>
             <Font size="15.0" />
          </font>

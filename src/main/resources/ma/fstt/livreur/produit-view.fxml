@@ -44,7 +44,7 @@
                         <buttons>
                             <Button fx:id="addButton" mnemonicParsing="false" onAction="#onAddButtonClick" text="add" />
                             <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#onDeleteButtonClick" text="delete" />
-                            <Button mnemonicParsing="false" text="edit" />
+                            <Button fx:id="editButton" mnemonicParsing="false" onAction="#onEditButtonClick" text="edit" />
                         </buttons>
                     </ButtonBar>
                 </children>

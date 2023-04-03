@@ -6,14 +6,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import ma.fstt.model.Livreur;
-import ma.fstt.model.LivreurDAO;
 import ma.fstt.model.Produit;
 import ma.fstt.model.ProduitDAO;
 
 import java.sql.SQLException;
 
-public class AddProduitController {
+public class AddEditProduitController {
 
     @FXML
     private TextField nomField;
@@ -21,15 +19,29 @@ public class AddProduitController {
     private TextField prixField;
     @FXML
     private TextArea descArea;
+    @FXML
+    private Label opLabel;
 
     private Stage dialogeStage;
+    private Produit produit;
 
     @FXML
     private void initialize(){
     }
 
     public void setDialogeStage(Stage dialogeStage){
+
         this.dialogeStage = dialogeStage;
+        opLabel.setText("Ajouter un produit");
+    }
+    public void setDialogeStage(Stage dialogeStage, Produit produit){
+        this.dialogeStage = dialogeStage;
+        this.produit = produit;
+
+        this.nomField.setText(produit.getNom());
+        this.prixField.setText(String.valueOf(produit.getPrix()));
+        this.descArea.setText(produit.getDescription());
+        opLabel.setText("Editer un produit");
     }
 
     @FXML
@@ -38,12 +50,20 @@ public class AddProduitController {
             String errorMessage = "";
             try {
                 ProduitDAO pdao = new ProduitDAO();
-                pdao.save(new Produit(
-                        0L,
-                        Float.parseFloat(prixField.getText()),
-                        nomField.getText(),
-                        descArea.getText()
-                ));
+                if(produit == null) {
+                    pdao.save(new Produit(
+                            0L,
+                            Float.parseFloat(prixField.getText()),
+                            nomField.getText(),
+                            descArea.getText()
+                    ));
+                }else {
+                    produit.setNom(nomField.getText());
+                    produit.setPrix(Float.parseFloat(prixField.getText()));
+                    produit.setDescription(descArea.getText());
+
+                    pdao.update(produit);
+                }
                 dialogeStage.close();
             }catch(SQLException e){
                 nomField.setText("");

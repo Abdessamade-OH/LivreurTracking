@@ -11,8 +11,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import ma.fstt.model.Livreur;
-import ma.fstt.model.LivreurDAO;
 import ma.fstt.model.Produit;
 import ma.fstt.model.ProduitDAO;
 
@@ -40,6 +38,8 @@ public class ProduitController implements Initializable{
     private Label descLabel;
     @FXML
     private Button deleteButton;
+    @FXML
+    private Button editButton;
     @FXML
     private AnchorPane myAnchorPane;
     @FXML
@@ -109,6 +109,7 @@ public class ProduitController implements Initializable{
 
         //on désactive le bouton supprimer
         deleteButton.setDisable(true);
+        editButton.setDisable(true);
 
         //pour sélectionner le premier élement par défaut
         prodTab.getSelectionModel().selectFirst();
@@ -120,30 +121,38 @@ public class ProduitController implements Initializable{
             prixLabel.setText(Float.toString(produit.getPrix()));
             descLabel.setText(produit.getDescription());
             deleteButton.setDisable(false);
-
+            editButton.setDisable(false);
         } else {
             nomLabel.setText("");
             prixLabel.setText("");
             descLabel.setText("");
             deleteButton.setDisable(true);
+            editButton.setDisable(true);
         }
     }
 
-    @FXML
-    protected void onAddButtonClick(){
+    private void handleClick(int option){
         try{
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(HelloApplication.class.getResource("addProduit-view.fxml"));
+            loader.setLocation(HelloApplication.class.getResource("addEditProduit-view.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Ajouter Produit");
+            if(option == 1) dialogStage.setTitle("Editer Produit");
+            else {
+                dialogStage.setTitle("Ajouter Produit");
+            }
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(HelloApplication.getStage());
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 
-            AddProduitController controller = loader.getController();
-            controller.setDialogeStage(dialogStage);
+            AddEditProduitController controller = loader.getController();
+            if(option==1){
+                Produit produit = prodTab.getSelectionModel().getSelectedItem();
+                controller.setDialogeStage(dialogStage, produit);
+            }else{
+                controller.setDialogeStage(dialogStage);
+            }
 
             dialogStage.showAndWait();
             updateTable();
@@ -151,13 +160,20 @@ public class ProduitController implements Initializable{
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.initOwner(HelloApplication.getStage());
             alert.setTitle("Erreur");
-            alert.setHeaderText("L'élément n'a pas pu être ajouté");
-            String errMsg = e.toString();
+            if (option == 1) {
+                alert.setHeaderText("L'élément n'a pas pu être edité");
+            } else {
+                alert.setHeaderText("L'élément n'a pas pu être ajouté");
+            }            String errMsg = e.toString();
             alert.setContentText(errMsg);
 
             alert.showAndWait();
             throw new RuntimeException(e);
         }
+    }
+    @FXML
+    protected void onAddButtonClick(){
+        handleClick(2);
     }
     @FXML
     protected void onDeleteButtonClick(){
@@ -197,4 +213,8 @@ public class ProduitController implements Initializable{
         }
     }
 
+    @FXML
+    protected void onEditButtonClick(){
+        handleClick(1);
+    }
 }

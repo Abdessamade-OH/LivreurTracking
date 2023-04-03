@@ -5,16 +5,13 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import ma.fstt.model.Livreur;
 import ma.fstt.model.LivreurDAO;
 
 import java.sql.SQLException;
-import java.util.Locale;
-import java.util.Set;
 
-public class AddLivreurController {
+public class AddEditLivreurController {
 
     @FXML
     private TextField nomField;
@@ -22,6 +19,8 @@ public class AddLivreurController {
     private TextField teleField;
     @FXML
     private ChoiceBox<String> teleArea;
+    @FXML
+    private Label opLabel;
     //private String areas[] = Locale.getISOCountries();
     private String areas[] = {"+212", "+23", "+33", "+56", "+123", "+21", "+213", "+83", "+111","+98","+122","+38"};
     private Stage dialogeStage;
@@ -35,7 +34,10 @@ public class AddLivreurController {
     }
 
     public void setDialogeStage(Stage dialogeStage){
+
         this.dialogeStage = dialogeStage;
+        opLabel.setText("Ajouter un livreur");
+
     }
 
     public void setDialogeStage(Stage dialogeStage, Livreur livreur){
@@ -44,6 +46,7 @@ public class AddLivreurController {
 
         this.nomField.setText(livreur.getNom());
         this.teleField.setText(livreur.getTelephone());
+        opLabel.setText("Editer un livreur");
     }
 
     @FXML

@@ -9,11 +9,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import ma.fstt.model.Livreur;
 import ma.fstt.model.LivreurDAO;
+import ma.fstt.model.Produit;
 
 
 import java.io.IOException;
@@ -92,39 +92,11 @@ public class LivreurController implements Initializable {
             throw new RuntimeException(e);
         }
     }
+
+
     @FXML
     protected void onAddButtonClick(){
-        //addBox.setVisible(true);
-        //addButton.setDisable(true);
-        try{
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(HelloApplication.class.getResource("addLivreur-view.fxml"));
-            AnchorPane page = (AnchorPane) loader.load();
-
-            Stage dialogStage = new Stage();
-            dialogStage.setTitle("Ajouter Livreur");
-            dialogStage.initModality(Modality.WINDOW_MODAL);
-            dialogStage.initOwner(HelloApplication.getStage());
-
-            Scene scene = new Scene(page);
-            dialogStage.setScene(scene);
-
-            AddLivreurController controller = loader.getController();
-            controller.setDialogeStage(dialogStage);
-
-            dialogStage.showAndWait();
-            updateTable();
-        }catch(Exception e){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.initOwner(HelloApplication.getStage());
-            alert.setTitle("Erreur");
-            alert.setHeaderText("L'élément n'a pas pu être ajouté");
-            String errMsg = e.toString();
-            alert.setContentText(errMsg);
-
-            alert.showAndWait();
-            throw new RuntimeException(e);
-        }
+        handleClick(2);
     }
 
     public void updateTable(){
@@ -222,40 +194,50 @@ public class LivreurController implements Initializable {
         }
     }
 
+    private void handleClick(int option) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(HelloApplication.class.getResource("addEditLivreur-view.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+            Stage dialogStage = new Stage();
+            if (option == 1) dialogStage.setTitle("Editer Livreur");
+            else {
+                dialogStage.setTitle("Ajouter Livreur");
+            }
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(HelloApplication.getStage());
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            AddEditLivreurController controller = loader.getController();
+            if (option == 1) {
+                Livreur livreur = livreurTab.getSelectionModel().getSelectedItem();
+                controller.setDialogeStage(dialogStage, livreur);
+            } else {
+                controller.setDialogeStage(dialogStage);
+            }
+
+            dialogStage.showAndWait();
+            updateTable();
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.initOwner(HelloApplication.getStage());
+            alert.setTitle("Erreur");
+            if (option == 1) {
+                alert.setHeaderText("L'élément n'a pas pu être edité");
+            } else {
+                alert.setHeaderText("L'élément n'a pas pu être ajouté");
+            }
+            String errMsg = e.toString();
+            alert.setContentText(errMsg);
+
+            alert.showAndWait();
+            throw new RuntimeException(e);
+        }
+    }
+
     @FXML
     protected void onEditButtonClick(){
-        Livreur livreur = livreurTab.getSelectionModel().getSelectedItem();
-        if(livreur!=null){
-            try{
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(HelloApplication.class.getResource("addLivreur-view.fxml"));
-                AnchorPane page = (AnchorPane) loader.load();
-
-                Stage dialogStage = new Stage();
-                dialogStage.setTitle("Editer Livreur");
-                dialogStage.initModality(Modality.WINDOW_MODAL);
-                dialogStage.initOwner(HelloApplication.getStage());
-
-                Scene scene = new Scene(page);
-                dialogStage.setScene(scene);
-
-                AddLivreurController controller = loader.getController();
-                controller.setDialogeStage(dialogStage, livreur);
-
-                dialogStage.showAndWait();
-                updateTable();
-            }catch(Exception e){
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.initOwner(HelloApplication.getStage());
-                alert.setTitle("Erreur");
-                alert.setHeaderText("L'élément n'a pas pu être edité");
-                String errMsg = e.toString();
-                alert.setContentText(errMsg);
-
-                alert.showAndWait();
-                throw new RuntimeException(e);
-            }
-        }
-
+        handleClick(1);
     }
 }
