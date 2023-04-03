@@ -21,8 +21,8 @@
             <TextField fx:id="nomField" GridPane.columnIndex="1" />
             <HBox alignment="CENTER" prefHeight="41.0" prefWidth="213.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <ChoiceBox prefHeight="24.0" prefWidth="83.0" />
-                  <TextField fx:id="teleField" prefHeight="24.0" prefWidth="165.0" />
+                  <ChoiceBox fx:id="teleArea" prefHeight="24.0" prefWidth="83.0" />
+                  <TextField fx:id="teleField" prefHeight="24.0" prefWidth="165.0" promptText="9 chiffres" />
                </children>
             </HBox>
          </children>

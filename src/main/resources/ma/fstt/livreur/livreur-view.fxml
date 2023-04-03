@@ -3,12 +3,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="ma.fstt.livreur.LivreurController"
-            fx:id="myAnchorPane"
->
+<AnchorPane fx:id="myAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ma.fstt.livreur.LivreurController">
    <children>
-      <SplitPane dividerPositions="0.4180602006688963" prefHeight="300.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane dividerPositions="0.49665551839464883" prefHeight="300.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
@@ -16,7 +13,7 @@
                       <columns>
                           <TableColumn fx:id="col_id" prefWidth="79.0" resizable="false" text="id" />
                           <TableColumn fx:id="col_nom" prefWidth="85.0" text="nom" />
-                          <TableColumn fx:id="col_telephone" prefWidth="100" text="telephone" />
+                          <TableColumn fx:id="col_telephone" prefWidth="119.0" text="telephone" />
                       </columns>
                   </TableView>
                </children>
@@ -24,8 +21,8 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="237.0">
                <children>
                   <Label prefHeight="16.0" prefWidth="97.0" text="Person details" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
-                   <Button layoutX="210.0" layoutY="1.0" onAction="#onBackButtonClick" prefHeight="22.0" prefWidth="116.0" text="Back" />
-                  <GridPane layoutX="5.0" layoutY="25.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="25.0">
+                   <Button layoutX="184.0" layoutY="1.0" onAction="#onBackButtonClick" prefHeight="22.0" prefWidth="116.0" text="Back" />
+                  <GridPane layoutX="10.0" layoutY="35.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

@@ -2,6 +2,7 @@ package ma.fstt.livreur;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
@@ -10,6 +11,8 @@ import ma.fstt.model.Livreur;
 import ma.fstt.model.LivreurDAO;
 
 import java.sql.SQLException;
+import java.util.Locale;
+import java.util.Set;
 
 public class AddLivreurController {
 
@@ -17,12 +20,17 @@ public class AddLivreurController {
     private TextField nomField;
     @FXML
     private TextField teleField;
-
+    @FXML
+    private ChoiceBox<String> teleArea;
+    //private String areas[] = Locale.getISOCountries();
+    private String areas[] = {"+212", "+23", "+33", "+56", "+123", "+21", "+213", "+83", "+111","+98","+122","+38"};
     private Stage dialogeStage;
-    private Label feedbackText;
+
 
     @FXML
     private void initialize(){
+        teleArea.getItems().addAll(areas);
+        teleArea.setValue("Area");
     }
 
     public void setDialogeStage(Stage dialogeStage){
@@ -33,12 +41,13 @@ public class AddLivreurController {
     protected void onSaveButtonClick() throws SQLException{
             String errorMessage = "";
             if(isInputValid()) {
+                String telephone = teleArea.getValue()+teleField.getText();
                 try {
                     LivreurDAO ldao = new LivreurDAO();
                     ldao.save(new Livreur(
                             1L,
                             nomField.getText(),
-                            teleField.getText()
+                            telephone
                     ));
                     //feedbackText.setText("Livreur Ajouté");
                     //updateTable();
@@ -67,8 +76,8 @@ public class AddLivreurController {
         if( nomField.getText()==null || nomField.getText().length()==0){
             errorMessage += "le champ nom du livreur est vide\n";
         }
-        if( teleField.getText()==null || teleField.getText().length()==0) {
-            errorMessage += "le champ telephone du livreur est vide\n";
+        if( teleField.getText()==null || teleField.getText().length()!=9) {
+            errorMessage += "le champ telephone du livreur est vide ou pas le bon nombre des chiffres\n";
         }else {
             try {
                 Float.parseFloat(teleField.getText());
@@ -76,6 +85,9 @@ public class AddLivreurController {
                 teleField.setText("");
                 errorMessage += "Le prix n'est pas valide (Doit être un nombre)";
             }
+        }
+        if( teleArea.getValue().equals("Area") ){
+            errorMessage += "Le code telephonique du payé";
         }
         if(errorMessage.length()==0) {
             return true;
