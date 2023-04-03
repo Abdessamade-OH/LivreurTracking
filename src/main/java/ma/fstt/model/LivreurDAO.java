@@ -17,21 +17,23 @@ public class LivreurDAO extends BaseDAO<Livreur>{
     @Override
     public void save(Livreur object) throws SQLException {
 
-        String request = "insert into livreur (nom, telephone) values (?, ?)";
+        String request = "insert into livreur (nom, telephone, vehicule) values (?, ?, ?)";
         this.preparedStatement = this.connection.prepareStatement(request);
         this.preparedStatement.setString(1, object.getNom());
         this.preparedStatement.setString(2, object.getTelephone());
+        this.preparedStatement.setString(3, object.getVehicule());
 
         this.preparedStatement.execute();
     }
 
     @Override
     public void update(Livreur object) throws SQLException {
-        String request = "update livreur set nom = ?,  telephone = ? where id_livreur = ?";
+        String request = "update livreur set nom = ?,  telephone = ?, vehicule = ? where id_livreur = ?";
         this.preparedStatement = this.connection.prepareStatement(request);
         this.preparedStatement.setString(1, object.getNom());
         this.preparedStatement.setString(2, object.getTelephone());
-        this.preparedStatement.setLong(3, object.getId_livreur());
+        this.preparedStatement.setString(3, object.getVehicule());
+        this.preparedStatement.setLong(4, object.getId_livreur());
 
         this.preparedStatement.execute();
     }
@@ -57,7 +59,8 @@ public class LivreurDAO extends BaseDAO<Livreur>{
                     new Livreur(
                         this.resultSet.getLong(1),
                         this.resultSet.getString(2),
-                        this.resultSet.getString(3)
+                        this.resultSet.getString(3),
+                        this.resultSet.getString(4)
                     )
             );
         }

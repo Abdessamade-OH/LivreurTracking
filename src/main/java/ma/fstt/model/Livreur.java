@@ -4,11 +4,13 @@ public class Livreur {
     private Long id_livreur;
     private String nom;
     private String telephone;
+    private String vehicule;
 
-    public Livreur(Long id, String nom, String telephone) {
+    public Livreur(Long id, String nom, String telephone, String vehicule) {
         this.id_livreur = id;
         this.nom = nom;
         this.telephone = telephone;
+        this.vehicule = vehicule;
     }
     public Long getId_livreur() {
         return id_livreur;
@@ -28,6 +30,14 @@ public class Livreur {
 
     public String getTelephone() {
         return telephone;
+    }
+
+    public String getVehicule() {
+        return vehicule;
+    }
+
+    public void setVehicule(String vehicule) {
+        this.vehicule = vehicule;
     }
 
     @Override

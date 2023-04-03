@@ -8,5 +8,6 @@
        <Button onAction="#onProdButtonClick" prefHeight="22.0" prefWidth="116.0" text="Produits" />
    
           <Button onAction="#onLivButtonClick" prefHeight="22.0" prefWidth="116.0" text="Livreurs" />
+      <Button layoutX="154.0" layoutY="126.0" onAction="#onCmdButtonClick" prefHeight="22.0" prefWidth="116.0" text="Commandes" />
    </children>
 </VBox>

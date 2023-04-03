@@ -28,6 +28,18 @@ public class MenuController {
             throw new RuntimeException(e);
         }
     }
+    @FXML
+    protected void onCmdButtonClick(){
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("commande-view.fxml"));
+        try {
+            Scene myScene = new Scene(loader.load(), HelloApplication.getScene().getWidth(), HelloApplication.getScene().getHeight());
+            HelloApplication.setScene(myScene);
+        } catch (IOException e) {
+
+            errorLabel.setText("SQL Error occured.");
+            throw new RuntimeException(e);
+        }
+    }
 
     @FXML
     protected void onProdButtonClick(){

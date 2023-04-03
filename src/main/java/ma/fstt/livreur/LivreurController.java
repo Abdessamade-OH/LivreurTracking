@@ -47,6 +47,8 @@ public class LivreurController implements Initializable {
     @FXML
     private Label teleLabel;
     @FXML
+    private Label vehiculeLabel;
+    @FXML
     private Button deleteButton;
     @FXML
     private AnchorPane myAnchorPane;
@@ -144,12 +146,14 @@ public class LivreurController implements Initializable {
         if (livreur != null) {
             nomLabel.setText(livreur.getNom());
             teleLabel.setText(livreur.getTelephone());
+            vehiculeLabel.setText(livreur.getVehicule());
             //nous activon les boutons aprés qu'un élément est selectionné
             deleteButton.setDisable(false);
             editButton.setDisable(false);
         } else {
             nomLabel.setText("");
             teleLabel.setText("");
+            vehiculeLabel.setText("");
             //on désactive les boutons supprimer et editer si aucun élément n'est sélectionné
             deleteButton.setDisable(true);
             editButton.setDisable(true);

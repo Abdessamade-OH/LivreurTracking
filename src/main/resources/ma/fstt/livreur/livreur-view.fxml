@@ -30,22 +30,17 @@
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
                         <Label text="Nom" />
                         <Label fx:id="nomLabel" text="" GridPane.columnIndex="1" />
                         <Label text="Telephone" GridPane.rowIndex="1" />
                         <Label fx:id="teleLabel" text="" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label text="Vehicule" GridPane.rowIndex="2" />
+                        <Label fx:id="vehiculeLabel" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
-                   <!--<VBox fx:id="addBox" layoutX="14.0" layoutY="99.0" prefHeight="122.0" prefWidth="304.0" spacing="7.0" AnchorPane.topAnchor="99.0">
-                       <Label text="Nom de livreur" />
-                       <TextField fx:id="nom" />
-                       <Label text="telephone de livreur" />
-                       <TextField fx:id="telephone" prefHeight="15.0" prefWidth="304.0" />
-                     <Label fx:id="feedbackText" alignment="BOTTOM_LEFT" />
-                       <Button onAction="#onSaveButtonClick" prefHeight="22.0" prefWidth="116.0" text="Save" />
-                   </VBox>-->
                   <ButtonBar prefHeight="40.0" prefWidth="279.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">
                     <buttons>
                       <Button fx:id="addButton" mnemonicParsing="false" onAction="#onAddButtonClick" text="add" />

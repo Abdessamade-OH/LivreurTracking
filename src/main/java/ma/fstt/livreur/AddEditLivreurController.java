@@ -18,6 +18,8 @@ public class AddEditLivreurController {
     @FXML
     private TextField teleField;
     @FXML
+    private TextField vehiculeField;
+    @FXML
     private ChoiceBox<String> teleArea;
     @FXML
     private Label opLabel;
@@ -46,6 +48,7 @@ public class AddEditLivreurController {
 
         this.nomField.setText(livreur.getNom());
         this.teleField.setText(livreur.getTelephone());
+        vehiculeField.setText(livreur.getVehicule());
         opLabel.setText("Editer un livreur");
     }
 
@@ -60,11 +63,13 @@ public class AddEditLivreurController {
                         ldao.save(new Livreur(
                                 1L,
                                 nomField.getText(),
-                                telephone
+                                telephone,
+                                vehiculeField.getText()
                         ));
                     }else{
                         livreur.setNom(nomField.getText());
                         livreur.setTelephone(telephone);
+                        livreur.setVehicule(vehiculeField.getText());
                         ldao.update(livreur);
                     }
                     //feedbackText.setText("Livreur Ajouté");
@@ -93,6 +98,9 @@ public class AddEditLivreurController {
         String errorMessage = "";
         if( nomField.getText()==null || nomField.getText().length()==0){
             errorMessage += "le champ nom du livreur est vide\n";
+        }
+        if( vehiculeField.getText()==null || vehiculeField.getText().length()==0){
+            errorMessage += "le champ nom du vehicule est vide\n";
         }
         if( teleField.getText()==null || teleField.getText().length()!=9) {
             errorMessage += "le champ telephone du livreur est vide ou pas le bon nombre des chiffres\n";
