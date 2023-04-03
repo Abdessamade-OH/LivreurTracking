@@ -65,7 +65,7 @@ public class HelloApplication extends Application {
         });*/
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("menu-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 500, 500);
+        Scene scene = new Scene(fxmlLoader.load(), 600, 500);
         stage.setTitle("Hello!");
         stage.setScene(scene);
 
@@ -77,8 +77,12 @@ public class HelloApplication extends Application {
     }
 
     public static Scene getScene(){ return myStage.getScene(); }
+
+    public static Stage getStage() {
+        return myStage;
+    }
+
     public static void main(String[] args) {
         launch();
-
     }
 }

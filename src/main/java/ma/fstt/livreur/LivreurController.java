@@ -8,7 +8,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import ma.fstt.model.Livreur;
 import ma.fstt.model.LivreurDAO;
 
@@ -16,16 +19,17 @@ import ma.fstt.model.LivreurDAO;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class LivreurController implements Initializable {
 
-    @FXML
+    /*@FXML
     private TextField nom;
     @FXML
     private TextField telephone;
     @FXML
-    private Label feedbackText;
+    private Label feedbackText;*/
     @FXML
     private TableView<Livreur> livreurTab;
     @FXML
@@ -34,13 +38,22 @@ public class LivreurController implements Initializable {
     private TableColumn<Livreur, String> col_nom;
     @FXML
     private TableColumn<Livreur, String> col_telephone;
-    @FXML
-    private VBox addBox;
+    /*@FXML
+    private VBox addBox;*/
     @FXML
     private Button addButton;
-
-
     @FXML
+    private Label nomLabel;
+    @FXML
+    private Label teleLabel;
+    @FXML
+    private Button deleteButton;
+    @FXML
+    private AnchorPane myAnchorPane;
+
+
+    //on save button click
+    /*@FXML
     protected void onSaveButtonClick() {
 
         if(telephone.getText().length() > 0 ) {
@@ -51,7 +64,9 @@ public class LivreurController implements Initializable {
                         nom.getText(),
                         telephone.getText()
                 ));
-                feedbackText.setText("Livreur Ajouté");
+                feedbackText.setText("Livreur A jouté");
+                nom.setText("");
+                telephone.setText("");
                 updateTable();
             } catch (SQLException e) {
                 feedbackText.setText("SQL Error!");
@@ -63,7 +78,7 @@ public class LivreurController implements Initializable {
             feedbackText.setText("Erreur: Vous devez remplir le champ telephone");
         }
 
-    }
+    }*/
 
     @FXML
     protected void onBackButtonClick(){
@@ -77,8 +92,34 @@ public class LivreurController implements Initializable {
     }
     @FXML
     protected void onAddButtonClick(){
-        addBox.setVisible(true);
-        addButton.setDisable(true);
+        //addBox.setVisible(true);
+        //addButton.setDisable(true);
+        try{
+            System.out.println("1");
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(HelloApplication.class.getResource("addLivreur-view.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+            System.out.println("2");
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Ajouter Livreur");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            System.out.println("3");
+            dialogStage.initOwner(HelloApplication.getStage());
+            System.out.println("4");
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+            System.out.println("5");
+
+            AddLivreurController controller = loader.getController();
+            controller.setDialogeStage(dialogStage);
+            System.out.println("6");
+
+            dialogStage.showAndWait();
+            System.out.println("7");
+            updateTable();
+        }catch(Exception e){
+            throw new RuntimeException(e);
+        }
     }
 
     public void updateTable(){
@@ -107,7 +148,69 @@ public class LivreurController implements Initializable {
 
     @Override
     public void initialize(URL connection, ResourceBundle resources){
-        addBox.setVisible(false);
+        //addBox.setVisible(false);
         updateTable();
+
+        //on ajoute un écouteur à la tableview pour pour obtenir l'élément sélectionné
+        livreurTab.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> showDetails(newValue));
+
+        //on désactive le bouton supprimer
+        deleteButton.setDisable(true);
+
+        //pour sélectionner le premier élement par défaut
+        livreurTab.getSelectionModel().selectFirst();
+    }
+
+    private void showDetails(Livreur livreur) {
+        if (livreur != null) {
+            nomLabel.setText(livreur.getNom());
+            teleLabel.setText(livreur.getTelephone());
+            //nous activon le bouton aprés qu'un élément est selectionné
+            deleteButton.setDisable(false);
+        } else {
+            nomLabel.setText("");
+            teleLabel.setText("");
+            //on désactive le bouton supprimer si aucun élément n'est sélectionné
+            deleteButton.setDisable(true);
+        }
+    }
+
+    @FXML
+    protected void onDeleteButtonClick(){
+        Livreur livreur = livreurTab.getSelectionModel().getSelectedItem();
+        if(livreur!=null) {
+            //On récupère le stage courant
+            Stage stage = (Stage) myAnchorPane.getScene().getWindow();
+            //On fixe le type de la fenêtre de dialogue
+            Alert.AlertType type = Alert.AlertType.CONFIRMATION;
+            //nous instancions un nouveau dialogue d'alerte
+            Alert alert = new Alert(type, "");
+
+            //pour s'assurer que la fenêtre parente est désactivée jusqu'à ce que la confirmation soit faite
+            alert.initModality(Modality.APPLICATION_MODAL);
+            //nous attribuons la boîte de dialogue de confirmation à notre fenêtre actuelle
+            alert.initOwner(stage);
+            //nous définissons le texte du corps de la boîte de dialogue de confirmation
+            String confirmationString = "Êtes-vous sûr de vouloir supprimer le livreur n°" + livreur.getId_livreur();
+            alert.getDialogPane().setContentText(confirmationString);
+            //nous définissons le texte d'entête de la boîte de dialogue de confirmation
+            alert.getDialogPane().setHeaderText("Supprimer livreur");
+
+            //nous définissons la fenêtre de dialogue à afficher et attendons un résultat
+            Optional<ButtonType> result = alert.showAndWait();
+            //on supprime l'élément une fois le bouton "OK" sélectionné
+            if(result.get() == ButtonType.OK) {
+                try {
+                    LivreurDAO ldao = new LivreurDAO();
+                    ldao.delete(livreur);
+                    updateTable();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }else if(result.get() == ButtonType.CANCEL){
+                System.out.println("cancled");
+            }
+        }
     }
 }

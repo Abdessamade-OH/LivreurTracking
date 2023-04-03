@@ -21,6 +21,6 @@ public abstract class BaseDAO<T> {
     public abstract void update(T object) throws SQLException;
     public abstract void delete(T object) throws SQLException;
     public abstract List<T> getAll() throws SQLException;
-    public abstract T getOne(Long id) throws SQLException;
+    public abstract T getOne(Long id) throws SQLException; //à utiliser pour les commandes
 
 }

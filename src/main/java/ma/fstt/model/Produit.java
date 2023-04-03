@@ -2,23 +2,28 @@ package ma.fstt.model;
 
 public class Produit {
 
-    private int id_produit;
-
+    private long id_produit;
+    private float prix;
     private String nom;
     private String description;
 
-    public Produit(int id_produit, String nom, String description) {
+    public Produit(long id_produit, float prix, String nom, String description) {
         this.id_produit = id_produit;
+        this.prix = prix;
         this.nom = nom;
         this.description = description;
     }
 
-    public int getId_produit() {
+    public long getId_produit() {
         return id_produit;
     }
 
-    public void setId_produit(int id_produit) {
-        this.id_produit = id_produit;
+    public float getPrix() {
+        return prix;
+    }
+
+    public void setPrix(float prix) {
+        this.prix = prix;
     }
 
     public String getNom() {

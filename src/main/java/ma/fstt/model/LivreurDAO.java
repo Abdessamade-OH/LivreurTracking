@@ -32,7 +32,12 @@ public class LivreurDAO extends BaseDAO<Livreur>{
 
     @Override
     public void delete(Livreur object) throws SQLException {
+        String request = "delete from livreur where id_livreur = (?)";
 
+        this.preparedStatement = this.connection.prepareStatement(request);
+        this.preparedStatement.setLong(1, object.getId_livreur());
+
+        this.preparedStatement.execute();
     }
 
     @Override
