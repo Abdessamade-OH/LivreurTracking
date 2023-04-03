@@ -7,7 +7,9 @@
     <list default="true" id="819bc3b3-9f99-4ff1-92eb-d1cf2e935a58" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ma/fstt/livreur/AddLivreurController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ma/fstt/livreur/AddLivreurController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ma/fstt/livreur/addLivreur-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ma/fstt/livreur/addLivreur-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ma/fstt/livreur/LivreurController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ma/fstt/livreur/LivreurController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ma/fstt/model/LivreurDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ma/fstt/model/LivreurDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ma/fstt/livreur/livreur-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ma/fstt/livreur/livreur-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +97,7 @@
       <workItem from="1680455804868" duration="5354000" />
       <workItem from="1680516512143" duration="5588000" />
       <workItem from="1680523896819" duration="5400000" />
-      <workItem from="1680530079110" duration="9534000" />
+      <workItem from="1680530079110" duration="13823000" />
     </task>
     <servers />
   </component>

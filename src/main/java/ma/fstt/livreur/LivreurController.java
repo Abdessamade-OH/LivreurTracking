@@ -39,9 +39,9 @@ public class LivreurController implements Initializable {
     @FXML
     private TableColumn<Livreur, String> col_telephone;
     /*@FXML
-    private VBox addBox;*/
+    private VBox addBox;
     @FXML
-    private Button addButton;
+    private Button addButton;*/
     @FXML
     private Label nomLabel;
     @FXML
@@ -50,6 +50,8 @@ public class LivreurController implements Initializable {
     private Button deleteButton;
     @FXML
     private AnchorPane myAnchorPane;
+    @FXML
+    private Button editButton;
 
 
     //on save button click
@@ -95,27 +97,22 @@ public class LivreurController implements Initializable {
         //addBox.setVisible(true);
         //addButton.setDisable(true);
         try{
-            System.out.println("1");
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(HelloApplication.class.getResource("addLivreur-view.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
-            System.out.println("2");
+
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Ajouter Livreur");
             dialogStage.initModality(Modality.WINDOW_MODAL);
-            System.out.println("3");
             dialogStage.initOwner(HelloApplication.getStage());
-            System.out.println("4");
+
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
-            System.out.println("5");
 
             AddLivreurController controller = loader.getController();
             controller.setDialogeStage(dialogStage);
-            System.out.println("6");
 
             dialogStage.showAndWait();
-            System.out.println("7");
             updateTable();
         }catch(Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -163,8 +160,9 @@ public class LivreurController implements Initializable {
         livreurTab.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showDetails(newValue));
 
-        //on désactive le bouton supprimer
+        //on désactive les boutons supprimer et editer
         deleteButton.setDisable(true);
+        editButton.setDisable(true);
 
         //pour sélectionner le premier élement par défaut
         livreurTab.getSelectionModel().selectFirst();
@@ -174,13 +172,15 @@ public class LivreurController implements Initializable {
         if (livreur != null) {
             nomLabel.setText(livreur.getNom());
             teleLabel.setText(livreur.getTelephone());
-            //nous activon le bouton aprés qu'un élément est selectionné
+            //nous activon les boutons aprés qu'un élément est selectionné
             deleteButton.setDisable(false);
+            editButton.setDisable(false);
         } else {
             nomLabel.setText("");
             teleLabel.setText("");
-            //on désactive le bouton supprimer si aucun élément n'est sélectionné
+            //on désactive les boutons supprimer et editer si aucun élément n'est sélectionné
             deleteButton.setDisable(true);
+            editButton.setDisable(true);
         }
     }
 
@@ -220,5 +220,42 @@ public class LivreurController implements Initializable {
                 System.out.println("cancled");
             }
         }
+    }
+
+    @FXML
+    protected void onEditButtonClick(){
+        Livreur livreur = livreurTab.getSelectionModel().getSelectedItem();
+        if(livreur!=null){
+            try{
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(HelloApplication.class.getResource("addLivreur-view.fxml"));
+                AnchorPane page = (AnchorPane) loader.load();
+
+                Stage dialogStage = new Stage();
+                dialogStage.setTitle("Editer Livreur");
+                dialogStage.initModality(Modality.WINDOW_MODAL);
+                dialogStage.initOwner(HelloApplication.getStage());
+
+                Scene scene = new Scene(page);
+                dialogStage.setScene(scene);
+
+                AddLivreurController controller = loader.getController();
+                controller.setDialogeStage(dialogStage, livreur);
+
+                dialogStage.showAndWait();
+                updateTable();
+            }catch(Exception e){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.initOwner(HelloApplication.getStage());
+                alert.setTitle("Erreur");
+                alert.setHeaderText("L'élément n'a pas pu être edité");
+                String errMsg = e.toString();
+                alert.setContentText(errMsg);
+
+                alert.showAndWait();
+                throw new RuntimeException(e);
+            }
+        }
+
     }
 }

@@ -13,7 +13,7 @@
                       <columns>
                           <TableColumn fx:id="col_id" prefWidth="79.0" resizable="false" text="id" />
                           <TableColumn fx:id="col_nom" prefWidth="85.0" text="nom" />
-                          <TableColumn fx:id="col_telephone" prefWidth="119.0" text="telephone" />
+                          <TableColumn fx:id="col_telephone" prefWidth="111.0" text="telephone" />
                       </columns>
                   </TableView>
                </children>
@@ -50,7 +50,7 @@
                     <buttons>
                       <Button fx:id="addButton" mnemonicParsing="false" onAction="#onAddButtonClick" text="add" />
                         <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#onDeleteButtonClick" text="delete" />
-                        <Button mnemonicParsing="false" text="edit" />
+                        <Button fx:id="editButton" mnemonicParsing="false" onAction="#onEditButtonClick" text="edit" />
                     </buttons>
                   </ButtonBar>
                </children>

@@ -26,6 +26,7 @@ public class AddLivreurController {
     private String areas[] = {"+212", "+23", "+33", "+56", "+123", "+21", "+213", "+83", "+111","+98","+122","+38"};
     private Stage dialogeStage;
 
+    private Livreur livreur;
 
     @FXML
     private void initialize(){
@@ -37,6 +38,14 @@ public class AddLivreurController {
         this.dialogeStage = dialogeStage;
     }
 
+    public void setDialogeStage(Stage dialogeStage, Livreur livreur){
+        this.dialogeStage = dialogeStage;
+        this.livreur = livreur;
+
+        this.nomField.setText(livreur.getNom());
+        this.teleField.setText(livreur.getTelephone());
+    }
+
     @FXML
     protected void onSaveButtonClick() throws SQLException{
             String errorMessage = "";
@@ -44,11 +53,17 @@ public class AddLivreurController {
                 String telephone = teleArea.getValue()+teleField.getText();
                 try {
                     LivreurDAO ldao = new LivreurDAO();
-                    ldao.save(new Livreur(
-                            1L,
-                            nomField.getText(),
-                            telephone
-                    ));
+                    if(livreur==null) {
+                        ldao.save(new Livreur(
+                                1L,
+                                nomField.getText(),
+                                telephone
+                        ));
+                    }else{
+                        livreur.setNom(nomField.getText());
+                        livreur.setTelephone(telephone);
+                        ldao.update(livreur);
+                    }
                     //feedbackText.setText("Livreur Ajouté");
                     //updateTable();
                     dialogeStage.close();

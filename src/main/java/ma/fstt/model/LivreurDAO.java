@@ -27,7 +27,13 @@ public class LivreurDAO extends BaseDAO<Livreur>{
 
     @Override
     public void update(Livreur object) throws SQLException {
+        String request = "update livreur set nom = ?,  telephone = ? where id_livreur = ?";
+        this.preparedStatement = this.connection.prepareStatement(request);
+        this.preparedStatement.setString(1, object.getNom());
+        this.preparedStatement.setString(2, object.getTelephone());
+        this.preparedStatement.setLong(3, object.getId_livreur());
 
+        this.preparedStatement.execute();
     }
 
     @Override
@@ -60,6 +66,12 @@ public class LivreurDAO extends BaseDAO<Livreur>{
 
     @Override
     public Livreur getOne(Long id) throws SQLException {
-        return null;
+
+        String request = "Select from livreur where id_livreur = (?)";
+        this.preparedStatement = this.connection.prepareStatement(request);
+        this.preparedStatement.setLong(1, id);
+
+        this.resultSet = preparedStatement.executeQuery();
+        return (Livreur) resultSet.getObject(0);
     }
 }
