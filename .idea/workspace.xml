@@ -5,12 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="819bc3b3-9f99-4ff1-92eb-d1cf2e935a58" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/ma/fstt/livreur/AddProduitController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/ma/fstt/livreur/addProduit-view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ma/fstt/livreur/AddLivreurController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ma/fstt/livreur/AddLivreurController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ma/fstt/livreur/LivreurController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ma/fstt/livreur/LivreurController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ma/fstt/livreur/ProduitController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ma/fstt/livreur/ProduitController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ma/fstt/livreur/addLivreur-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ma/fstt/livreur/addLivreur-view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/ma/fstt/livreur/livreur-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ma/fstt/livreur/livreur-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ma/fstt/livreur/login-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ma/fstt/livreur/login-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ma/fstt/livreur/menu-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ma/fstt/livreur/menu-view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/ma/fstt/livreur/produit-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ma/fstt/livreur/produit-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -88,7 +90,18 @@
       <workItem from="1679958702928" duration="6378000" />
       <workItem from="1679971339488" duration="1711000" />
       <workItem from="1680091150192" duration="2056000" />
-      <workItem from="1680128019234" duration="2031000" />
+      <workItem from="1680128019234" duration="2782000" />
+      <workItem from="1680217492654" duration="4000" />
+      <workItem from="1680347952298" duration="2808000" />
+      <workItem from="1680352356265" duration="2086000" />
+      <workItem from="1680358311773" duration="2893000" />
+      <workItem from="1680362529122" duration="3444000" />
+      <workItem from="1680394091949" duration="637000" />
+      <workItem from="1680432179319" duration="2746000" />
+      <workItem from="1680455804868" duration="5354000" />
+      <workItem from="1680516512143" duration="5588000" />
+      <workItem from="1680523896819" duration="5400000" />
+      <workItem from="1680530079110" duration="5341000" />
     </task>
     <servers />
   </component>
@@ -114,6 +127,10 @@
           <line>34</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

@@ -1,14 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="ma.fstt.livreur.ProduitController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane fx:id="myAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ma.fstt.livreur.ProduitController">
+   <children>
+      <SplitPane dividerPositions="0.44816053511705684" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <TableView fx:id="prodTab" prefHeight="398.0" prefWidth="214.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columns>
+                      <TableColumn fx:id="col_id" prefWidth="60.0" text="Id" />
+                        <TableColumn fx:id="col_nom" prefWidth="105.0" text="nom" />
+                      <TableColumn fx:id="col_prix" prefWidth="66.0" text="prix" />
+                    </columns>
+                  </TableView>
+               </children></AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                <children>
+                    <Label prefHeight="16.0" prefWidth="97.0" text="Person details" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                    <Button layoutX="210.0" layoutY="1.0" onAction="#onBackButtonClick" prefHeight="22.0" prefWidth="116.0" text="Back" />
+                    <GridPane layoutX="5.0" layoutY="25.0" prefHeight="117.0" prefWidth="317.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="25.0">
+                        <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        </columnConstraints>
+                        <rowConstraints>
+                            <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="27.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="45.0" minHeight="10.0" prefHeight="29.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="59.0" minHeight="10.0" prefHeight="59.0" vgrow="SOMETIMES" />
+                        </rowConstraints>
+                        <children>
+                            <Label text="Nom" />
+                            <Label fx:id="nomLabel" prefHeight="16.0" prefWidth="148.0" text="" GridPane.columnIndex="1" />
+                            <Label text="Prix" GridPane.rowIndex="1" />
+                            <Label fx:id="prixLabel" prefHeight="16.0" prefWidth="147.0" text="" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                            <Label prefWidth="102.0" text="Description" GridPane.rowIndex="2" />
+                            <Label fx:id="descLabel" prefHeight="50.0" prefWidth="154.0" text="" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        </children>
+                    </GridPane>
+                    <ButtonBar prefHeight="40.0" prefWidth="279.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">
+                        <buttons>
+                            <Button fx:id="addButton" mnemonicParsing="false" onAction="#onAddButtonClick" text="add" />
+                            <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#onDeleteButtonClick" text="delete" />
+                            <Button mnemonicParsing="false" text="edit" />
+                        </buttons>
+                    </ButtonBar>
+                </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
 </AnchorPane>

@@ -25,14 +25,6 @@ import java.util.ResourceBundle;
 public class ProduitController implements Initializable{
 
     @FXML
-    private Label feedbackText;
-    @FXML
-    private TextField prix;
-    @FXML
-    private TextField nom;
-    @FXML
-    private TextArea description;
-    @FXML
     private TableColumn<Produit, Long> col_id;
     @FXML
     private TableColumn<Produit, Float> col_prix;
@@ -61,7 +53,8 @@ public class ProduitController implements Initializable{
         }
     }
 
-    @FXML
+    // save button
+    /*@FXML
     protected void onSaveButtonClick(){
         try{
             ProduitDAO pdao = new ProduitDAO();
@@ -83,7 +76,7 @@ public class ProduitController implements Initializable{
         }catch(NumberFormatException e){
             feedbackText.setText("Erreur: Le prix doit etre un nombre!");
         }
-    }
+    }*/
 
     public void updateTable(){
         col_id.setCellValueFactory(new PropertyValueFactory<Produit, Long>("id_produit"));
@@ -138,7 +131,33 @@ public class ProduitController implements Initializable{
 
     @FXML
     protected void onAddButtonClick(){
+        try{
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(HelloApplication.class.getResource("addProduit-view.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Ajouter Produit");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(HelloApplication.getStage());
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
 
+            AddProduitController controller = loader.getController();
+            controller.setDialogeStage(dialogStage);
+
+            dialogStage.showAndWait();
+            updateTable();
+        }catch(Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.initOwner(HelloApplication.getStage());
+            alert.setTitle("Erreur");
+            alert.setHeaderText("L'élément n'a pas pu être ajouté");
+            String errMsg = e.toString();
+            alert.setContentText(errMsg);
+
+            alert.showAndWait();
+            throw new RuntimeException(e);
+        }
     }
     @FXML
     protected void onDeleteButtonClick(){

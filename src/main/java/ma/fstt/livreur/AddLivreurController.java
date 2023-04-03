@@ -31,7 +31,9 @@ public class AddLivreurController {
 
     @FXML
     protected void onSaveButtonClick() throws SQLException{
+            String errorMessage = "";
             if(isInputValid()) {
+                try {
                     LivreurDAO ldao = new LivreurDAO();
                     ldao.save(new Livreur(
                             1L,
@@ -41,6 +43,17 @@ public class AddLivreurController {
                     //feedbackText.setText("Livreur Ajouté");
                     //updateTable();
                     dialogeStage.close();
+                }catch(SQLException e){
+                    nomField.setText("");
+                    errorMessage += e.toString();
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.initOwner(dialogeStage);
+                    alert.setTitle("Erreur BDD");
+                    alert.setHeaderText("Erreur au niveau de la base de donneés, SVP Correcter");
+                    alert.setContentText(errorMessage);
+
+                    alert.showAndWait();
+                }
             }
     }
 
@@ -50,14 +63,28 @@ public class AddLivreurController {
     }
 
     private boolean isInputValid(){
-        if(teleField.getText().length() > 0) {
+        String errorMessage = "";
+        if( nomField.getText()==null || nomField.getText().length()==0){
+            errorMessage += "le champ nom du livreur est vide\n";
+        }
+        if( teleField.getText()==null || teleField.getText().length()==0) {
+            errorMessage += "le champ telephone du livreur est vide\n";
+        }else {
+            try {
+                Float.parseFloat(teleField.getText());
+            }catch(NumberFormatException e) {
+                teleField.setText("");
+                errorMessage += "Le prix n'est pas valide (Doit être un nombre)";
+            }
+        }
+        if(errorMessage.length()==0) {
             return true;
         }else{
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.initOwner(dialogeStage);
             alert.setTitle("Valeurs non valides");
             alert.setHeaderText("Erreur, SVP Correcter");
-            alert.setContentText("Erreur: Vous devez remplir le champ telephone");
+            alert.setContentText(errorMessage);
 
             alert.showAndWait();
             return false;

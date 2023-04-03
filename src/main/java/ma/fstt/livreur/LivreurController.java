@@ -118,6 +118,14 @@ public class LivreurController implements Initializable {
             System.out.println("7");
             updateTable();
         }catch(Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.initOwner(HelloApplication.getStage());
+            alert.setTitle("Erreur");
+            alert.setHeaderText("L'élément n'a pas pu être ajouté");
+            String errMsg = e.toString();
+            alert.setContentText(errMsg);
+
+            alert.showAndWait();
             throw new RuntimeException(e);
         }
     }
