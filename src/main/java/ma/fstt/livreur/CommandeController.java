@@ -56,6 +56,8 @@ public class CommandeController implements Initializable {
     @FXML
     private Label kmLabel;
     @FXML
+    private Label prixTotalLabel;
+    @FXML
     private AnchorPane myAnchorPane;
     @FXML
     private TableView<ProduitCommande> prodTab;
@@ -161,6 +163,7 @@ public class CommandeController implements Initializable {
                 throw new RuntimeException(e);
             }
             etatLebel.setText(commande.getEtat());
+            prixTotalLabel.setText(String.valueOf(commande.getPrix_total()));
             clientLabel.setText(commande.getClient());
             dateLabel.setText(String.valueOf(commande.getDate_debut()));
             kmLabel.setText(String.valueOf(commande.getKm()));
@@ -175,6 +178,7 @@ public class CommandeController implements Initializable {
         } else {
             livLabel.setText("");
             etatLebel.setText("");
+            prixTotalLabel.setText("");
             clientLabel.setText("");
             dateLabel.setText("");
             dateFinLabel.setText("");
@@ -299,6 +303,8 @@ public class CommandeController implements Initializable {
 
                 dialogStage.showAndWait();
                 updateProdTable();
+                updateTable();
+                cmdTab.getSelectionModel().select(commande);
             } catch (Exception e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.initOwner(HelloApplication.getStage());
@@ -341,7 +347,10 @@ public class CommandeController implements Initializable {
             if(result.get() == ButtonType.OK) {
                 try {
                     commande.emptyProduits();
+                    commande.updatePrix();
                     updateProdTable();
+                    updateTable();
+                    cmdTab.getSelectionModel().select(commande);
                 }catch(SQLException e){
                     Alert alert2 = new Alert(Alert.AlertType.ERROR);
                     alert2.initOwner(HelloApplication.getStage());

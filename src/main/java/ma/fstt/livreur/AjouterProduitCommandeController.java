@@ -56,7 +56,9 @@ public class AjouterProduitCommandeController {
     public void onSaveButtonClick(){
         if(isInputValid()) {
             try {
-                commande.addProduct( prodChoice.getValue(), Integer.parseInt(quantiteField.getText() ) );
+                commande.addProduct( prodChoice.getValue(), Integer.parseInt(quantiteField.getText()) );
+                commande.updatePrix(prodChoice.getValue(), Integer.parseInt(quantiteField.getText()));
+
                 dialogeStage.close();
             } catch (SQLException e) {
                 this.quantiteField.setText("");

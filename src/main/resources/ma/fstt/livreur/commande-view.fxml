@@ -21,9 +21,9 @@
                 </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="237.0">
                     <children>
-                        <Label layoutX="5.0" layoutY="18.0" prefHeight="16.0" prefWidth="151.0" text="Commande details" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="18.0" />
+                        <Label layoutX="5.0" layoutY="6.0" prefHeight="16.0" prefWidth="151.0" text="Commande details" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="6.0" />
                         <Button layoutX="294.0" layoutY="2.0" onAction="#onBackButtonClick" prefHeight="24.0" prefWidth="80.0" text="Back" />
-                        <GridPane layoutX="14.0" layoutY="51.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="-4.0" AnchorPane.topAnchor="51.0">
+                        <GridPane layoutX="14.0" layoutY="34.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="-4.0" AnchorPane.topAnchor="34.0">
                             <columnConstraints>
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -35,6 +35,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
                                 <Label text="Nom Livreur" />
@@ -43,13 +44,15 @@
                                 <Label fx:id="etatLebel" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <Label text="Nom Client" GridPane.rowIndex="1" />
                         <Label fx:id="clientLabel" layoutX="10.0" layoutY="77.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label layoutX="10.0" layoutY="107.0" text="Date Debut" GridPane.rowIndex="4" />
-                        <Label fx:id="dateLabel" layoutX="10.0" layoutY="137.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <Label layoutX="10.0" layoutY="137.0" text="Date Fin" GridPane.rowIndex="5" />
-                        <Label fx:id="dateFinLabel" layoutX="10.0" layoutY="167.0" prefHeight="16.0" prefWidth="158.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <Label layoutX="10.0" layoutY="107.0" text="Distance(km)" GridPane.rowIndex="3" />
-                        <Label fx:id="kmLabel" layoutX="10.0" layoutY="137.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label layoutX="10.0" layoutY="107.0" text="Date Debut" GridPane.rowIndex="5" />
+                        <Label fx:id="dateLabel" layoutX="10.0" layoutY="137.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label layoutX="10.0" layoutY="137.0" text="Date Fin" GridPane.rowIndex="6" />
+                        <Label fx:id="dateFinLabel" layoutX="10.0" layoutY="167.0" prefHeight="16.0" prefWidth="158.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label layoutX="10.0" layoutY="107.0" text="Distance(km)" GridPane.rowIndex="4" />
+                        <Label fx:id="kmLabel" layoutX="10.0" layoutY="137.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <Label fx:id="dateLabel1" layoutX="160.0" layoutY="137.0" prefWidth="0.0" />
+                        <Label layoutX="10.0" layoutY="77.0" text="Prix Total" GridPane.rowIndex="3" />
+                        <Label fx:id="prixTotalLabel" layoutX="10.0" layoutY="107.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                             </children>
                         </GridPane>
                         <ButtonBar layoutY="402.0" prefHeight="39.0" prefWidth="297.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">

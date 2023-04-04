@@ -84,4 +84,30 @@ public class ProduitDAO extends BaseDAO<Produit> {
 
         return null;
     }
+
+    public List<ProduitCommande> getProduitsCommandes(Long id_produit) throws SQLException{
+        String request = "Select * from produit_commande where id_produit = ?";
+        List<ProduitCommande> myList = new ArrayList<>();
+        this.preparedStatement = this.connection.prepareStatement(request);
+        this.preparedStatement.setLong(1, id_produit);
+
+        this.resultSet = preparedStatement.executeQuery();
+        while(resultSet.next()){
+            ProduitDAO pdao = new ProduitDAO();
+            Long id_produit = this.resultSet.getLong(1);
+            Produit produit = pdao.getOne(id_produit);
+            myList.add(
+                    new ProduitCommande(
+                            id_produit,
+                            this.resultSet.getInt(2),
+                            this.resultSet.getLong(3),
+                            this.resultSet.getLong(4),
+                            produit.getNom(),
+                            produit.getPrix()
+                    )
+            );
+        }
+
+        return myList;
+    }
 }

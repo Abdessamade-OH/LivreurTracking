@@ -67,14 +67,15 @@ public class CommandeDAO extends BaseDAO<Commande>{
 
     @Override
     public void update(Commande object) throws SQLException {
-        String request = "update commande set km = ?,  client = ?, etat = ?, id_livreur = ?, date_fin = ? where id_commande = ?";
+        String request = "update commande set km = ?,  client = ?, etat = ?, id_livreur = ?, date_fin = ?, prix_total = ? where id_commande = ?";
         this.preparedStatement = this.connection.prepareStatement(request);
         this.preparedStatement.setFloat(1, object.getKm());
         this.preparedStatement.setString(2, object.getClient());
         this.preparedStatement.setString(3, object.getEtat());
         this.preparedStatement.setLong(4, object.getId_livreur());
         this.preparedStatement.setTimestamp(5, object.getDate_fin());
-        this.preparedStatement.setLong(6, object.getId_commande());
+        this.preparedStatement.setFloat(6, object.getPrix_total());
+        this.preparedStatement.setLong(7, object.getId_commande());
 
         this.preparedStatement.execute();
     }
@@ -102,9 +103,10 @@ public class CommandeDAO extends BaseDAO<Commande>{
                             this.resultSet.getFloat(2),
                             this.resultSet.getString(3),
                             this.resultSet.getString(4),
-                            this.resultSet.getTimestamp(5),
+                            this.resultSet.getFloat(5),
                             this.resultSet.getTimestamp(6),
-                            this.resultSet.getLong(7)
+                            this.resultSet.getTimestamp(7),
+                            this.resultSet.getLong(8)
                     )
             );
         }
@@ -130,9 +132,10 @@ public class CommandeDAO extends BaseDAO<Commande>{
                                 this.resultSet.getFloat(2),
                                 this.resultSet.getString(3),
                                 this.resultSet.getString(4),
-                                this.resultSet.getTimestamp(5),
+                                this.resultSet.getFloat(5),
                                 this.resultSet.getTimestamp(6),
-                                this.resultSet.getLong(7)
+                                this.resultSet.getTimestamp(7),
+                                this.resultSet.getLong(8)
                         )
                 );
             }

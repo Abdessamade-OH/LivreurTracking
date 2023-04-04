@@ -11,17 +11,19 @@ public class Commande {
     private float km;
     private String client;
     private String etat;
+    private float prix_total = 0;
 
     private long id_livreur;
 
     private Timestamp date_debut;
     private Timestamp date_fin;
 
-    public Commande(long id_commande, float km, String client, String etat, Timestamp date_debut, Timestamp date_fin, long id_livreur) {
+    public Commande(long id_commande, float km, String client, String etat, float prix_total, Timestamp date_debut, Timestamp date_fin, long id_livreur) {
         this.id_commande = id_commande;
         this.km = km;
         this.client = client;
         this.etat = etat;
+        this.prix_total = prix_total;
         this.date_debut = date_debut;
         this.date_fin = date_fin;
         this.id_livreur = id_livreur;
@@ -34,6 +36,27 @@ public class Commande {
         this.id_livreur = id_livreur;
     }
 
+    public float getPrix_total() {
+        return prix_total;
+    }
+
+    public void setPrix_total(float prix_total) {
+        this.prix_total = prix_total;
+    }
+
+    public void updatePrix(Long id_produit, int quantite) throws SQLException{
+        ProduitDAO pdao = new ProduitDAO();
+        float prix = pdao.getOne(id_produit).getPrix();
+        prix_total += prix*quantite;
+        
+        CommandeDAO cdao = new CommandeDAO();
+        cdao.update(this);
+    }
+    public void updatePrix() throws SQLException{
+        this.setPrix_total(0);
+        CommandeDAO cdao = new CommandeDAO();
+        cdao.update(this);
+    }
     public long getId_commande() {
         return id_commande;
     }

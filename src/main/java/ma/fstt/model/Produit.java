@@ -1,5 +1,7 @@
 package ma.fstt.model;
 
+import java.sql.SQLException;
+
 public class Produit {
 
     private long id_produit;
@@ -14,6 +16,12 @@ public class Produit {
         this.description = description;
     }
 
+    public int getCommanded() throws SQLException {
+
+        ProduitDAO pdao = new ProduitDAO();
+
+        return 0;
+    }
     public long getId_produit() {
         return id_produit;
     }

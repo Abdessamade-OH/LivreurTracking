@@ -7,7 +7,7 @@
 
 <AnchorPane prefHeight="470.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ma.fstt.livreur.MenuController">
    <children>
-      <SplitPane dividerPositions="0.33783783783783783" prefHeight="247.0" prefWidth="285.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane dividerPositions="0.25267379679144386" prefHeight="247.0" prefWidth="285.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
@@ -19,7 +19,7 @@
                         <Button onAction="#onCmdButtonClick" prefHeight="46.0" prefWidth="140.0" text="Commandes" />
                      </children>
                   </VBox>
-                  <Label layoutX="49.0" layoutY="21.0" prefHeight="85.0" prefWidth="153.0" text="Operations CRUD" textAlignment="CENTER" textFill="#a40000" wrapText="true">
+                  <Label layoutX="14.0" layoutY="29.0" prefHeight="85.0" prefWidth="153.0" text="Operations CRUD" textAlignment="CENTER" textFill="#a40000" wrapText="true">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -28,37 +28,73 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="213.0" prefWidth="223.0">
                <children>
-                  <TabPane layoutY="62.0" prefHeight="406.0" prefWidth="441.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="51.0" AnchorPane.topAnchor="62.0">
+                  <TabPane layoutY="35.0" prefHeight="433.0" prefWidth="492.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
                     <tabs>
-                      <Tab text="Produits/Commande" />
+                        <Tab text="Produits/Commande">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <BarChart fx:id="barChart2" layoutX="-4.0" layoutY="1.0" prefHeight="402.0" prefWidth="492.0" title="Commandes et quantité moyenne par produit" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <xAxis>
+                                        <CategoryAxis label="Produit id/Nom" side="BOTTOM" fx:id="x5" />
+                                      </xAxis>
+                                      <yAxis>
+                                        <NumberAxis fx:id="y5" label="Commandes | Nbr Moyenne de la quantité" prefHeight="348.0" prefWidth="50.0" side="LEFT" />
+                                      </yAxis>
+                                    </BarChart>
+                                 </children></AnchorPane>
+                            </content>
+                        </Tab>
                       <Tab text="Livreur/Commande">
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <ScrollPane prefHeight="274.0" prefWidth="242.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                       <content>
-                                          <StackedBarChart prefHeight="275.0" prefWidth="239.0">
-                                            <xAxis>
-                                              <CategoryAxis side="BOTTOM" />
-                                            </xAxis>
-                                            <yAxis>
-                                              <NumberAxis side="LEFT" />
-                                            </yAxis>
-                                          </StackedBarChart>
-                                       </content>
-                                    </ScrollPane>
+                                    <BarChart fx:id="barChart" prefHeight="402.0" prefWidth="492.0" title="Commande par Livreur" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <xAxis>
+                                        <CategoryAxis label="Livreur id/nom" side="BOTTOM" fx:id="x" />
+                                      </xAxis>
+                                      <yAxis>
+                                        <NumberAxis fx:id="y" label="Nombre Commandes effectuées" side="LEFT" />
+                                      </yAxis>
+                                    </BarChart>
                                  </children>
                               </AnchorPane>
                         </content>
                       </Tab>
-                        <Tab text="Livreur/Vitesse">
+                        <Tab text="Livreur/vitesse">
                            <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <LineChart fx:id="lineChart" layoutX="-8.0" layoutY="1.0" title="vittese de livraison par livreur">
+                                      <xAxis>
+                                        <CategoryAxis label="Livreur id/Nom" side="BOTTOM" fx:id="x2" />
+                                      </xAxis>
+                                      <yAxis>
+                                        <NumberAxis fx:id="y2" label="Vittesse moyenne des livraison (km/h)" prefWidth="68.0" side="LEFT" />
+                                      </yAxis>
+                                    </LineChart>
+                                 </children></AnchorPane>
+                           </content>
+                        </Tab>
+                        <Tab text="Livreur/Distance">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <LineChart fx:id="lineChart2" layoutX="-8.0" layoutY="1.0" title="Distance parcourue moyenne par livreur">
+                                       <xAxis>
+                                          <CategoryAxis label="Livreur id/Nom" side="BOTTOM" fx:id="x3" />
+                                       </xAxis>
+                                       <yAxis>
+                                          <NumberAxis fx:id="y3" label="Distance moyenne des livraison (km)" prefWidth="68.0" side="LEFT" />
+                                       </yAxis>
+                                    </LineChart>
+                                 </children>
+                              </AnchorPane>
                            </content>
                         </Tab>
                     </tabs>
                   </TabPane>
-                  <Label layoutX="106.0" layoutY="-3.0" prefHeight="45.0" prefWidth="263.0" text="Bilans et Dashboard" textAlignment="CENTER" textFill="#a40000" wrapText="true">
+                  <Label layoutX="145.0" prefHeight="45.0" prefWidth="263.0" text="Bilans et Dashboard" textAlignment="CENTER" textFill="#a40000" wrapText="true">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
