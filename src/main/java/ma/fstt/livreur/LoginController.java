@@ -24,6 +24,7 @@ public class LoginController {
     protected void onLoginButtonClick(){
         try{
             CommandeDAO cdao = new CommandeDAO();
+            //il faut ajouter un admin à la base de données manuelement
             if(cdao.authentifier(username.getText(), password.getText())){
                 FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("menu-view.fxml"));
                 try {

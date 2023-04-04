@@ -23,4 +23,11 @@ public abstract class BaseDAO<T> {
     public abstract List<T> getAll() throws SQLException;
     public abstract T getOne(Long id) throws SQLException; //à utiliser pour les commandes
 
+    public Connection getConnection() {
+        return connection;
+    }
+
+    public void setConnection(Connection connection) {
+        this.connection = connection;
+    }
 }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ma.fstt.livreur.ProduitBilanController">
+      <BarChart fx:id="barChart2" prefHeight="402.0" prefWidth="600.0" title="Commandes et quantité moyenne par produit" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+          <xAxis>
+              <CategoryAxis label="Produit id/Nom" side="BOTTOM" fx:id="x5" />
+          </xAxis>
+          <yAxis>
+              <NumberAxis fx:id="y5" label="Commandes | Nbr Moyenne de la quantité" prefHeight="348.0" prefWidth="50.0" side="LEFT" />
+          </yAxis>
+      </BarChart>
+   <Button mnemonicParsing="false" onAction="#onBackButtonClick" text="Back" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="10.0" />
+</AnchorPane>

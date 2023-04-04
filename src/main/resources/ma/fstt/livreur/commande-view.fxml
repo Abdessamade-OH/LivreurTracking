@@ -62,15 +62,15 @@
                                 <Button fx:id="editButton" minWidth="69.0" mnemonicParsing="false" onAction="#onEditButtonClick" prefHeight="24.0" text="edit" />
                             </buttons>
                         </ButtonBar>
-                  <TableView fx:id="prodTab" layoutX="5.0" layoutY="256.0" prefHeight="158.0" prefWidth="287.0">
+                  <TableView fx:id="prodTab" layoutX="5.0" layoutY="256.0" prefHeight="158.0" prefWidth="306.0">
                     <columns>
                       <TableColumn fx:id="id_col" prefWidth="57.0" text="Id" />
-                        <TableColumn fx:id="nom_col" minWidth="0.0" prefWidth="65.0" text="Nom" />
-                        <TableColumn fx:id="prix_col" minWidth="0.0" prefWidth="61.0" text="Prix" />
-                        <TableColumn fx:id="quantite_col" minWidth="0.0" prefWidth="83.0" text="Quantité" />
+                        <TableColumn fx:id="nom_col" minWidth="0.0" prefWidth="111.0" text="Nom" />
+                        <TableColumn fx:id="prix_col" minWidth="0.0" prefWidth="56.0" text="Prix" />
+                        <TableColumn fx:id="quantite_col" minWidth="0.0" prefWidth="74.0" text="Quantité" />
                     </columns>
                   </TableView>
-                  <VBox alignment="CENTER" layoutX="297.0" layoutY="256.0" prefHeight="158.0" prefWidth="73.0" spacing="20.0">
+                  <VBox alignment="CENTER" layoutX="311.0" layoutY="256.0" prefHeight="158.0" prefWidth="73.0" spacing="20.0">
                      <children>
                         <Button fx:id="ajouterButton" mnemonicParsing="false" onAction="#onAjouterButtonClick" text="Ajouter" />
                         <Button fx:id="emptyButton" layoutX="25.0" layoutY="77.0" mnemonicParsing="false" onAction="#onEmptyButtonClick" text="Empty" />

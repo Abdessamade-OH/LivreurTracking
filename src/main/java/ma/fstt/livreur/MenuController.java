@@ -16,13 +16,13 @@ import ma.fstt.model.*;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class MenuController implements Initializable {
-
     @FXML
     private BarChart<?, ?> barChart;
     @FXML
@@ -41,56 +41,42 @@ public class MenuController implements Initializable {
     private NumberAxis y3;
     @FXML
     private CategoryAxis x3;
-    @FXML
-    private BarChart<?, ?> barChart2;
-    @FXML
-    private NumberAxis y5;
-    @FXML
-    private CategoryAxis x5;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Connection conn1 = null;
+        Connection conn2 = null;
+        Connection conn3 = null;
         XYChart.Series seriesCmdLiv = new XYChart.Series();
         XYChart.Series seriesLivVit = new XYChart.Series();
         XYChart.Series seriesLivDistance = new XYChart.Series();
-        XYChart.Series seriesProdCmd = new XYChart.Series();
-        XYChart.Series seriesProdQnt = new XYChart.Series();
 
         List<Livreur> livreurList;
-        List<Produit> produitList;
         try{
             LivreurDAO ldao = new LivreurDAO();
+            conn1 = ldao.getConnection();
             livreurList = ldao.getAll();
-            ProduitDAO pdao = new ProduitDAO();
-            produitList = pdao.getAll();
         }catch(SQLException e){
             throw new RuntimeException(e);
-        }
-        String xVal;
-        String xProdVal;
-        try {
-            System.out.println("One");
-            for (Produit produit : produitList) {
-                xProdVal = produit.getId_produit() + "\n" + produit.getNom();
-                System.out.println(produit.getCommandedProduits());
-                System.out.println(produit.getQauntiteMoy());
-                seriesProdCmd.getData().add(new XYChart.Data(xProdVal, produit.getCommandedProduits()));
-                seriesProdQnt.getData().add(new XYChart.Data(xProdVal, produit.getQauntiteMoy()));
+        }finally{
+            if(conn1!=null){
+                try {
+                    conn1.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
             }
-        }catch(SQLException e){
-            throw new RuntimeException(e);
         }
-        seriesProdCmd.setName("Nombre Commandes");
-        seriesProdQnt.setName("Quantité moyenne");
-        barChart2.getData().addAll(seriesProdCmd);
-        barChart2.getData().addAll(seriesProdQnt);
+
+        String xVal;
+        /**/
         for(Livreur livreur : livreurList){
             float vitesse = 0;
             float distance = 0;
             List<Commande> commandList = new ArrayList<>();
             try {
                 CommandeDAO cdao = new CommandeDAO();
-
+                conn3 = cdao.getConnection();
                 for (Commande cmd : cdao.getAllById(livreur.getId_livreur())) {
                     if(cmd.getEtat().equals("fini")) {
                         //System.out.println(cmd.getDate_fin().getTime() - cmd.getDate_debut().getTime());
@@ -108,6 +94,14 @@ public class MenuController implements Initializable {
                 }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
+            }finally{
+                if(conn3!=null){
+                    try {
+                        conn3.close();
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
             }
             xVal = livreur.getId_livreur() + "\n" + livreur.getNom();
             seriesCmdLiv.getData().add(new XYChart.Data(xVal, commandList.size()));
@@ -160,6 +154,25 @@ public class MenuController implements Initializable {
     @FXML
     protected void onProdButtonClick(){
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("produit-view.fxml"));
+        try {
+            Scene myScene = new Scene(loader.load(), HelloApplication.getScene().getWidth(), HelloApplication.getScene().getHeight());
+            HelloApplication.setScene(myScene);
+        } catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.initOwner(HelloApplication.getStage());
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Opération n'a pas pu être effectuée");
+            String errMsg = e.toString();
+            alert.setContentText(errMsg);
+
+            alert.showAndWait();
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    protected void onBilanButtonClick(){
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("produitBilan-view.fxml"));
         try {
             Scene myScene = new Scene(loader.load(), HelloApplication.getScene().getWidth(), HelloApplication.getScene().getHeight());
             HelloApplication.setScene(myScene);

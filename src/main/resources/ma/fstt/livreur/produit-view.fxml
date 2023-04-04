@@ -21,15 +21,15 @@
                 <children>
                     <Label prefHeight="16.0" prefWidth="97.0" text="Person details" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
                     <Button layoutX="210.0" layoutY="1.0" onAction="#onBackButtonClick" prefHeight="22.0" prefWidth="116.0" text="Back" />
-                    <GridPane layoutX="5.0" layoutY="25.0" prefHeight="117.0" prefWidth="317.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="25.0">
+                    <GridPane layoutX="5.0" layoutY="25.0" prefHeight="266.0" prefWidth="317.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="25.0">
                         <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="151.0" minWidth="10.0" prefWidth="113.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="204.0" minWidth="10.0" prefWidth="204.0" />
                         </columnConstraints>
                         <rowConstraints>
                             <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="27.0" vgrow="SOMETIMES" />
-                            <RowConstraints maxHeight="45.0" minHeight="10.0" prefHeight="29.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="59.0" minHeight="10.0" prefHeight="59.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="65.0" minHeight="0.0" prefHeight="11.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="179.0" minHeight="10.0" prefHeight="179.0" vgrow="SOMETIMES" />
                         </rowConstraints>
                         <children>
                             <Label text="Nom" />
@@ -37,7 +37,7 @@
                             <Label text="Prix" GridPane.rowIndex="1" />
                             <Label fx:id="prixLabel" prefHeight="16.0" prefWidth="147.0" text="" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                             <Label prefWidth="102.0" text="Description" GridPane.rowIndex="2" />
-                            <Label fx:id="descLabel" prefHeight="50.0" prefWidth="154.0" text="" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                            <Label fx:id="descLabel" text="" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         </children>
                     </GridPane>
                     <ButtonBar prefHeight="40.0" prefWidth="279.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">
