@@ -6,9 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="819bc3b3-9f99-4ff1-92eb-d1cf2e935a58" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ma/fstt/livreur/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ma/fstt/livreur/MenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ma/fstt/model/Produit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ma/fstt/model/Produit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ma/fstt/model/ProduitDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ma/fstt/model/ProduitDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ma/fstt/livreur/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ma/fstt/livreur/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ma/fstt/livreur/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ma/fstt/livreur/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ma/fstt/model/CommandeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ma/fstt/model/CommandeDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ma/fstt/livreur/login-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ma/fstt/livreur/login-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ma/fstt/livreur/menu-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ma/fstt/livreur/menu-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +101,7 @@
       <workItem from="1680530079110" duration="17678000" />
       <workItem from="1680558722977" duration="12454000" />
       <workItem from="1680572366995" duration="18493000" />
-      <workItem from="1680592043735" duration="18360000" />
+      <workItem from="1680592043735" duration="21821000" />
     </task>
     <servers />
   </component>

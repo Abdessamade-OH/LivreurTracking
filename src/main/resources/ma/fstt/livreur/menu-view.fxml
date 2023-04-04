@@ -34,14 +34,18 @@
                             <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <BarChart fx:id="barChart2" layoutX="-4.0" layoutY="1.0" prefHeight="402.0" prefWidth="556.0" title="Commandes et quantité moyenne par produit" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                      <xAxis>
-                                        <CategoryAxis label="Produit id/Nom" side="BOTTOM" fx:id="x5" />
-                                      </xAxis>
-                                      <yAxis>
-                                        <NumberAxis fx:id="y5" label="Commandes | Nbr Moyenne de la quantité" prefHeight="348.0" prefWidth="50.0" side="LEFT" />
-                                      </yAxis>
-                                    </BarChart>
+                                    <ScrollPane prefHeight="402.0" prefWidth="556.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <content>
+                                          <BarChart fx:id="barChart2" prefHeight="402.0" prefWidth="556.0" title="Commandes et quantité moyenne par produit">
+                                            <xAxis>
+                                              <CategoryAxis label="Produit id/Nom" side="BOTTOM" fx:id="x5" />
+                                            </xAxis>
+                                            <yAxis>
+                                              <NumberAxis fx:id="y5" label="Commandes | Nbr Moyenne de la quantité" prefHeight="348.0" prefWidth="50.0" side="LEFT" />
+                                            </yAxis>
+                                          </BarChart>
+                                       </content>
+                                    </ScrollPane>
                                  </children></AnchorPane>
                             </content>
                         </Tab>
@@ -49,14 +53,17 @@
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <BarChart fx:id="barChart" prefHeight="402.0" prefWidth="556.0" title="Commande par Livreur" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                      <xAxis>
-                                        <CategoryAxis label="Livreur id/nom" side="BOTTOM" fx:id="x" />
-                                      </xAxis>
-                                      <yAxis>
-                                        <NumberAxis fx:id="y" label="Nombre Commandes effectuées" side="LEFT" />
-                                      </yAxis>
-                                    </BarChart>
+                                    <ScrollPane prefHeight="402.0" prefWidth="556.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <content>
+                                          <BarChart fx:id="barChart" prefHeight="402.0" prefWidth="556.0" title="Commande par Livreur">
+                                            <xAxis>
+                                              <CategoryAxis label="Livreur id/nom" side="BOTTOM" fx:id="x" />
+                                            </xAxis>
+                                            <yAxis>
+                                              <NumberAxis fx:id="y" label="Nombre Commandes effectuées" side="LEFT" />
+                                            </yAxis>
+                                          </BarChart>
+                                       </content></ScrollPane>
                                  </children>
                               </AnchorPane>
                         </content>
@@ -65,14 +72,18 @@
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <LineChart fx:id="lineChart" layoutX="-8.0" layoutY="1.0" prefHeight="402.0" prefWidth="556.0" title="vittese de livraison par livreur" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                      <xAxis>
-                                        <CategoryAxis label="Livreur id/Nom" side="BOTTOM" fx:id="x2" />
-                                      </xAxis>
-                                      <yAxis>
-                                        <NumberAxis fx:id="y2" label="Vittesse moyenne des livraison (km/h)" prefWidth="68.0" side="LEFT" />
-                                      </yAxis>
-                                    </LineChart>
+                                    <ScrollPane prefHeight="402.0" prefWidth="556.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <content>
+                                          <LineChart fx:id="lineChart" prefHeight="402.0" prefWidth="556.0" title="vittese de livraison par livreur">
+                                            <xAxis>
+                                              <CategoryAxis label="Livreur id/Nom" side="BOTTOM" fx:id="x2" />
+                                            </xAxis>
+                                            <yAxis>
+                                              <NumberAxis fx:id="y2" label="Vittesse moyenne des livraison (km/h)" prefWidth="68.0" side="LEFT" />
+                                            </yAxis>
+                                          </LineChart>
+                                       </content>
+                                    </ScrollPane>
                                  </children></AnchorPane>
                            </content>
                         </Tab>
@@ -80,14 +91,17 @@
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <LineChart fx:id="lineChart2" layoutX="-8.0" layoutY="1.0" prefHeight="402.0" prefWidth="556.0" title="Distance parcourue moyenne par livreur" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                       <xAxis>
-                                          <CategoryAxis label="Livreur id/Nom" side="BOTTOM" fx:id="x3" />
-                                       </xAxis>
-                                       <yAxis>
-                                          <NumberAxis fx:id="y3" label="Distance moyenne des livraison (km)" prefWidth="68.0" side="LEFT" />
-                                       </yAxis>
-                                    </LineChart>
+                                    <ScrollPane prefHeight="402.0" prefWidth="556.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <content>
+                                          <LineChart fx:id="lineChart2" prefHeight="402.0" prefWidth="556.0" title="Distance parcourue moyenne par livreur">
+                                             <xAxis>
+                                                <CategoryAxis label="Livreur id/Nom" side="BOTTOM" fx:id="x3" />
+                                             </xAxis>
+                                             <yAxis>
+                                                <NumberAxis fx:id="y3" label="Distance moyenne des livraison (km)" prefWidth="68.0" side="LEFT" />
+                                             </yAxis>
+                                          </LineChart>
+                                       </content></ScrollPane>
                                  </children>
                               </AnchorPane>
                            </content>

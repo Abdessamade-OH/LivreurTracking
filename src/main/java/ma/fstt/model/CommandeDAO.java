@@ -144,4 +144,20 @@ public class CommandeDAO extends BaseDAO<Commande>{
     }
 
 
+    public boolean authentifier(String username, String password) throws SQLException{
+        String request = "Select username,password from admin where username = ?";
+        this.preparedStatement = this.connection.prepareStatement(request);
+        this.preparedStatement.setString(1, username);
+
+        this.resultSet = this.preparedStatement.executeQuery();
+
+        while(this.resultSet.next()){
+            System.out.println(this.resultSet.getString(1));
+            System.out.println(this.resultSet.getString(2));
+            if (password.equals(this.resultSet.getString(2))){
+                return true;
+            }
+        }
+        return false;
+    }
 }
