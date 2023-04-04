@@ -160,7 +160,6 @@ public class LivreurController implements Initializable {
 
     @Override
     public void initialize(URL connection, ResourceBundle resources){
-        //addBox.setVisible(false);
         updateTable();
         updateCmdTable();
         //on ajoute un écouteur à la tableview pour pour obtenir l'élément sélectionné
