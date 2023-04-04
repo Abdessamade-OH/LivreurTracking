@@ -4,18 +4,18 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="307.0" prefWidth="362.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ma.fstt.livreur.AddEditCommandeController">
+<AnchorPane prefHeight="312.0" prefWidth="352.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ma.fstt.livreur.AddEditCommandeController">
     <children>
-        <GridPane layoutX="29.0" layoutY="53.0" prefHeight="149.0" prefWidth="305.0">
+        <GridPane layoutX="8.0" layoutY="52.0" prefHeight="196.0" prefWidth="340.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="144.0" minWidth="10.0" prefWidth="89.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="232.0" minWidth="10.0" prefWidth="216.0" />
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints maxHeight="29.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="54.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="59.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="59.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="54.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="59.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="59.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
                 <Label text="Distance(km)" GridPane.rowIndex="1" />
@@ -29,13 +29,13 @@
             <ChoiceBox fx:id="etatChoice" layoutX="99.0" layoutY="10.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             </children>
         </GridPane>
-        <ButtonBar layoutX="107.0" layoutY="230.0" prefHeight="40.0" prefWidth="220.0">
+        <ButtonBar layoutX="121.0" layoutY="270.0" prefHeight="31.0" prefWidth="220.0">
             <buttons>
                 <Button mnemonicParsing="false" onAction="#onSaveButtonClick" text="Save" />
                 <Button layoutX="125.0" layoutY="18.0" mnemonicParsing="false" onAction="#onCancelButtonClick" text="Cancel" />
             </buttons>
         </ButtonBar>
-        <Label fx:id="opLabel" layoutX="85.0" layoutY="14.0" prefHeight="31.0" prefWidth="191.0" text="Ajouter nouveau Produit" textAlignment="CENTER">
+        <Label fx:id="opLabel" layoutX="62.0" layoutY="14.0" prefHeight="31.0" prefWidth="232.0" text="Ajouter nouveau Commande" textAlignment="CENTER">
          <font>
             <Font size="15.0" />
          </font>

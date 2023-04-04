@@ -1,14 +1,19 @@
 package ma.fstt.livreur;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import ma.fstt.model.*;
 
+import java.net.URL;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 public class AddEditCommandeController {
 
@@ -24,7 +29,6 @@ public class AddEditCommandeController {
     private Label opLabel;
     @FXML
     private Label etatLabel;
-
 
     private Stage dialogeStage;
     private Commande commande;

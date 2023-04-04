@@ -3,27 +3,27 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="myAnchorPane" prefHeight="443.0" prefWidth="645.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ma.fstt.livreur.CommandeController">
+<AnchorPane fx:id="myAnchorPane" prefHeight="470.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ma.fstt.livreur.CommandeController">
     <children>
-        <SplitPane dividerPositions="0.5147744945567652" prefHeight="300.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <SplitPane dividerPositions="0.48262032085561496" prefHeight="300.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                     <children>
                         <TableView fx:id="cmdTab" prefHeight="398.0" prefWidth="316.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <columns>
                                 <TableColumn fx:id="col_id" prefWidth="64.0" resizable="false" text="id" />
-                                <TableColumn fx:id="col_livreur" prefWidth="71.0" text="id livreur" />
-                                <TableColumn fx:id="col_client" prefWidth="102.0" text="nom client" />
-                        <TableColumn fx:id="col_etat" prefWidth="78.0" text="etat" />
+                                <TableColumn fx:id="col_livreur" prefWidth="82.0" text="id livreur" />
+                                <TableColumn fx:id="col_client" prefWidth="101.0" text="nom client" />
+                        <TableColumn fx:id="col_etat" prefWidth="68.0" text="etat" />
                             </columns>
                         </TableView>
                     </children>
                 </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="237.0">
                     <children>
-                        <Label prefHeight="16.0" prefWidth="151.0" text="Commande details" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
-                        <Button layoutX="184.0" layoutY="1.0" onAction="#onBackButtonClick" prefHeight="24.0" prefWidth="80.0" text="Back" />
-                        <GridPane layoutX="10.0" layoutY="35.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
+                        <Label layoutX="5.0" layoutY="18.0" prefHeight="16.0" prefWidth="151.0" text="Commande details" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="18.0" />
+                        <Button layoutX="294.0" layoutY="2.0" onAction="#onBackButtonClick" prefHeight="24.0" prefWidth="80.0" text="Back" />
+                        <GridPane layoutX="14.0" layoutY="51.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="-4.0" AnchorPane.topAnchor="51.0">
                             <columnConstraints>
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -52,21 +52,26 @@
                         <Label fx:id="dateLabel1" layoutX="160.0" layoutY="137.0" prefWidth="0.0" />
                             </children>
                         </GridPane>
-                        <ButtonBar layoutY="402.0" prefHeight="39.0" prefWidth="297.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="402.0">
+                        <ButtonBar layoutY="402.0" prefHeight="39.0" prefWidth="297.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                             <buttons>
                                 <Button fx:id="addButton" mnemonicParsing="false" onAction="#onAddButtonClick" text="add" />
                                 <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#onDeleteButtonClick" text="delete" />
                                 <Button fx:id="editButton" minWidth="69.0" mnemonicParsing="false" onAction="#onEditButtonClick" prefHeight="24.0" text="edit" />
                             </buttons>
                         </ButtonBar>
-                  <TableView fx:id="prodTab" layoutX="5.0" layoutY="256.0" prefHeight="119.0" prefWidth="287.0">
+                  <TableView fx:id="prodTab" layoutX="5.0" layoutY="256.0" prefHeight="158.0" prefWidth="287.0">
                     <columns>
-                      <TableColumn fx:id="idCol" prefWidth="57.0" text="Id" />
-                        <TableColumn fx:id="nomCol" minWidth="0.0" prefWidth="65.0" text="Nom" />
-                        <TableColumn fx:id="prixCol" minWidth="0.0" prefWidth="61.0" text="Prix" />
-                        <TableColumn fx:id="quantiteCol" minWidth="0.0" prefWidth="83.0" text="Quantité" />
+                      <TableColumn fx:id="id_col" prefWidth="57.0" text="Id" />
+                        <TableColumn fx:id="nom_col" minWidth="0.0" prefWidth="65.0" text="Nom" />
+                        <TableColumn fx:id="prix_col" minWidth="0.0" prefWidth="61.0" text="Prix" />
+                        <TableColumn fx:id="quantite_col" minWidth="0.0" prefWidth="83.0" text="Quantité" />
                     </columns>
                   </TableView>
+                  <VBox alignment="CENTER" layoutX="297.0" layoutY="256.0" prefHeight="158.0" prefWidth="73.0" spacing="20.0">
+                     <children>
+                        <Button fx:id="ajouterButton" mnemonicParsing="false" onAction="#onAjouterButtonClick" text="Ajouter" />
+                        <Button fx:id="emptyButton" layoutX="25.0" layoutY="77.0" mnemonicParsing="false" onAction="#onEmptyButtonClick" text="Empty" />
+                     </children></VBox>
                     </children>
                 </AnchorPane>
             </items>

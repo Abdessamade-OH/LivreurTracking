@@ -21,6 +21,45 @@ public class CommandeDAO extends BaseDAO<Commande>{
         this.preparedStatement.execute();
     }
 
+    public void saveProduit(long id_produit, int quantite, long id_commande) throws SQLException{
+        String request = "insert into produit_commande (id_produit, quantite, id_commande) values(?, ?, ?)";
+        this.preparedStatement = this.connection.prepareStatement(request);
+        this.preparedStatement.setLong(1, id_produit);
+        this.preparedStatement.setLong(2, quantite);
+        this.preparedStatement.setLong(3, id_commande);
+
+        this.preparedStatement.execute();
+    }
+
+    public void emptyProduits(long id_commande) throws SQLException{
+        String request = "delete from table produit_commande where id_commande = ?";
+        this.preparedStatement = this.connection.prepareStatement(request);
+        this.preparedStatement.setLong(1, id_commande);
+
+        this.preparedStatement.execute();
+    }
+
+    public List<ProduitCommande> getAllProduits(long id_commande) throws SQLException{
+        String request = "Select * from produit_commande where id_commande = ?";
+        List<ProduitCommande> myList = new ArrayList<>();
+        this.preparedStatement = this.connection.prepareStatement(request);
+        this.preparedStatement.setLong(1, id_commande);
+
+        this.resultSet = preparedStatement.executeQuery();
+        while(resultSet.next()){
+            myList.add(
+                    new ProduitCommande(
+                        this.resultSet.getLong(1),
+                        this.resultSet.getInt(2),
+                        this.resultSet.getLong(3),
+                        this.resultSet.getLong(4)
+                     )
+            );
+        }
+
+        return myList;
+    }
+
     @Override
     public void update(Commande object) throws SQLException {
         String request = "update commande set km = ?,  client = ?, etat = ?, id_livreur = ?, date_fin = ? where id_commande = ?";

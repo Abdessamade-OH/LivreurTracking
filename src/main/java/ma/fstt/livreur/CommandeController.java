@@ -2,7 +2,6 @@ package ma.fstt.livreur;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,14 +11,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import ma.fstt.model.Commande;
-import ma.fstt.model.CommandeDAO;
-import ma.fstt.model.Livreur;
-import ma.fstt.model.LivreurDAO;
+import ma.fstt.model.*;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -54,9 +52,43 @@ public class CommandeController implements Initializable {
     private Label kmLabel;
     @FXML
     private AnchorPane myAnchorPane;
-
     @FXML
-    public void onBackButtonClick() {
+    private TableView<ProduitCommande> prodTab;
+    @FXML
+    private TableColumn<ProduitCommande, Long> id_col;
+    @FXML
+    private TableColumn<ProduitCommande, Integer> quantite_col;
+    @FXML
+    private TableColumn<ProduitCommande, String> nom_col;
+    @FXML
+    private TableColumn<ProduitCommande, Float> prix_col;
+
+    public void updateProdTable(){
+            id_col.setCellValueFactory(new PropertyValueFactory<ProduitCommande, Long>("id_produit"));
+            nom_col.setCellValueFactory(new PropertyValueFactory<ProduitCommande, String>("nom"));
+            prix_col.setCellValueFactory(new PropertyValueFactory<ProduitCommande, Float>("prix"));
+            quantite_col.setCellValueFactory(new PropertyValueFactory<ProduitCommande, Integer>("quantite"));
+
+            prodTab.setItems(getProdData());
+    }
+
+    public ObservableList<ProduitCommande> getProdData(){
+        ObservableList<ProduitCommande> myList = FXCollections.observableArrayList();
+        Commande commande = cmdTab.getSelectionModel().getSelectedItem();
+        if(commande!=null) {
+            try {
+                CommandeDAO cdao = new CommandeDAO();
+                for (ProduitCommande pc : cdao.getAllProduits(commande.getId_commande())) {
+                    myList.add(pc);
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return myList;
+    }
+    @FXML
+    protected void onBackButtonClick() {
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("menu-view.fxml"));
         try {
             Scene myScene = new Scene(loader.load(), HelloApplication.getScene().getWidth(), HelloApplication.getScene().getHeight());
@@ -94,6 +126,7 @@ public class CommandeController implements Initializable {
     public void initialize(URL connection, ResourceBundle resources){
         //addBox.setVisible(false);
         updateTable();
+        updateProdTable();
         //on ajoute un écouteur à la tableview pour pour obtenir l'élément sélectionné
         cmdTab.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showDetails(newValue));
@@ -108,8 +141,11 @@ public class CommandeController implements Initializable {
 
     private void showDetails(Commande commande) {
         if (commande != null) {
-            //livLabel.setText(commande.getLivreur().getNom());
-            livLabel.setText(String.valueOf(commande.getId_livreur()));
+            try{
+                livLabel.setText(commande.getLivreur().getNom());
+            }catch(SQLException e){
+                throw new RuntimeException(e);
+            }
             etatLebel.setText(commande.getEtat());
             clientLabel.setText(commande.getClient());
             dateLabel.setText(String.valueOf(commande.getDate_debut()));
@@ -136,17 +172,17 @@ public class CommandeController implements Initializable {
     }
 
     @FXML
-    public void onAddButtonClick() {
+    protected void onAddButtonClick() {
         handleClick(2);
     }
 
     @FXML
-    public void onEditButtonClick() {
+    protected void onEditButtonClick() {
         handleClick(1);
     }
 
     @FXML
-    public void onDeleteButtonClick() {
+    protected void onDeleteButtonClick() {
         Commande commande = cmdTab.getSelectionModel().getSelectedItem();
         if(commande!=null) {
             //On récupère le stage courant
@@ -225,4 +261,61 @@ public class CommandeController implements Initializable {
         }
     }
 
+    @FXML
+    protected void onAjouterButtonClick(){
+        Commande commande = cmdTab.getSelectionModel().getSelectedItem();
+        if(commande!=null) {
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(HelloApplication.class.getResource("ajouterProduitCommande-view.fxml"));
+                AnchorPane page = (AnchorPane) loader.load();
+                Stage dialogStage = new Stage();
+                dialogStage.setTitle("Ajouter produit à la commande");
+
+                dialogStage.initModality(Modality.WINDOW_MODAL);
+                dialogStage.initOwner(HelloApplication.getStage());
+                Scene scene = new Scene(page);
+                dialogStage.setScene(scene);
+
+                AjouterProduitCommandeController controller = loader.getController();
+                controller.setDialogeStage(dialogStage, commande);
+
+                dialogStage.showAndWait();
+                updateProdTable();
+            } catch (Exception e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.initOwner(HelloApplication.getStage());
+                alert.setTitle("Erreur");
+                alert.setHeaderText("L'élément n'a pas pu être ajouté");
+
+                String errMsg = e.toString();
+                alert.setContentText(errMsg);
+
+                alert.showAndWait();
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    @FXML
+    protected void onEmptyButtonClick(){
+        Commande commande = cmdTab.getSelectionModel().getSelectedItem();
+        if(commande!=null) {
+            try {
+                commande.emptyProduits();
+                updateProdTable();
+            }catch(SQLException e){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.initOwner(HelloApplication.getStage());
+                alert.setTitle("Erreur");
+                alert.setHeaderText("Erreur au niveau de BDD");
+
+                String errMsg = e.toString();
+                alert.setContentText(errMsg);
+
+                alert.showAndWait();
+                throw new RuntimeException(e);
+            }
+        }
+    }
 }

@@ -70,11 +70,21 @@ public class LivreurDAO extends BaseDAO<Livreur>{
     @Override
     public Livreur getOne(Long id) throws SQLException {
 
-        String request = "Select from livreur where id_livreur = (?)";
+        String request = "Select * from livreur where id_livreur = ?";
         this.preparedStatement = this.connection.prepareStatement(request);
         this.preparedStatement.setLong(1, id);
 
         this.resultSet = preparedStatement.executeQuery();
-        return (Livreur) resultSet.getObject(0);
+        while(resultSet.next()){
+            Livreur livreur = new Livreur(
+                    this.resultSet.getLong(1),
+                    this.resultSet.getString(2),
+                    this.resultSet.getString(3),
+                    this.resultSet.getString(4)
+            );
+            return livreur;
+        }
+
+        return null;
     }
 }

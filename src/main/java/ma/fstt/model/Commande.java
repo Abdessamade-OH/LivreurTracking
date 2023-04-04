@@ -1,7 +1,10 @@
 package ma.fstt.model;
 
+import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Commande {
     private long id_commande;
@@ -14,10 +17,9 @@ public class Commande {
     private Timestamp date_debut;
     private Timestamp date_fin;
 
-    private Livreur livreur;
     private HashMap<Produit, Integer> produits;
 
-    public Commande(long id_commande, float km, String client, String etat,Timestamp date_debut, Timestamp date_fin, long id_livreur) {
+    public Commande(long id_commande, float km, String client, String etat, Timestamp date_debut, Timestamp date_fin, long id_livreur) {
         this.id_commande = id_commande;
         this.km = km;
         this.client = client;
@@ -38,12 +40,9 @@ public class Commande {
         return id_commande;
     }
 
-    public Livreur getLivreur() {
-        return livreur;
-    }
-
-    public void setLivreur(Livreur livreur) {
-        this.livreur = livreur;
+    public Livreur getLivreur() throws SQLException {
+        LivreurDAO ldao = new LivreurDAO();
+        return ldao.getOne(this.id_livreur);
     }
 
     public HashMap<Produit, Integer> getProduits() {
@@ -101,4 +100,15 @@ public class Commande {
     public void setDate_fin(Timestamp date_fin) {
         this.date_fin = date_fin;
     }
+
+    public void emptyProduits() throws SQLException {
+        CommandeDAO cdao = new CommandeDAO();
+        cdao.emptyProduits(id_commande);
+    }
+
+    public void addProduct(long id_produit, int quantite) throws SQLException{
+        CommandeDAO cdao = new CommandeDAO();
+        cdao.saveProduit(id_produit, quantite, id_commande);
+    }
+
 }

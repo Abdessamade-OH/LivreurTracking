@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="182.0" prefWidth="342.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ma.fstt.livreur.AjouterProduitCommandeController">
+   <children>
+      <Label layoutX="19.0" layoutY="14.0" prefHeight="37.0" prefWidth="264.0" text="Ajouter un produit au commande">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+      <GridPane layoutX="13.0" layoutY="60.0" prefHeight="82.0" prefWidth="316.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="144.0" minWidth="10.0" prefWidth="89.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="232.0" minWidth="10.0" prefWidth="216.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="29.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="54.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label text="Quantite" GridPane.rowIndex="1" />
+            <Label text="Produit" />
+            <TextField fx:id="quantiteField" prefHeight="19.0" prefWidth="82.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <ChoiceBox fx:id="prodChoice" prefWidth="150.0" GridPane.columnIndex="1" />
+         </children>
+      </GridPane>
+      <ButtonBar layoutX="109.0" layoutY="142.0" prefHeight="31.0" prefWidth="220.0">
+         <buttons>
+            <Button mnemonicParsing="false" onAction="#onSaveButtonClick" text="Save" />
+            <Button layoutX="125.0" layoutY="18.0" mnemonicParsing="false" onAction="#onCancelButtonClick" text="Cancel" />
+         </buttons>
+      </ButtonBar>
+   </children>
+</AnchorPane>
