@@ -67,7 +67,7 @@ public class ProduitDAO extends BaseDAO<Produit> {
 
     @Override
     public Produit getOne(Long id) throws SQLException {
-        String request = "Select * from produit where id_livreur = ?";
+        String request = "Select * from produit where id_produit = ?";
         this.preparedStatement = this.connection.prepareStatement(request);
         this.preparedStatement.setLong(1, id);
 

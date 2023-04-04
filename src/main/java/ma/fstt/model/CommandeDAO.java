@@ -32,7 +32,7 @@ public class CommandeDAO extends BaseDAO<Commande>{
     }
 
     public void emptyProduits(long id_commande) throws SQLException{
-        String request = "delete from table produit_commande where id_commande = ?";
+        String request = "delete from produit_commande where id_commande = ?";
         this.preparedStatement = this.connection.prepareStatement(request);
         this.preparedStatement.setLong(1, id_commande);
 
@@ -47,12 +47,17 @@ public class CommandeDAO extends BaseDAO<Commande>{
 
         this.resultSet = preparedStatement.executeQuery();
         while(resultSet.next()){
+            ProduitDAO pdao = new ProduitDAO();
+            Long id_produit = this.resultSet.getLong(1);
+            Produit produit = pdao.getOne(id_produit);
             myList.add(
                     new ProduitCommande(
-                        this.resultSet.getLong(1),
+                        id_produit,
                         this.resultSet.getInt(2),
                         this.resultSet.getLong(3),
-                        this.resultSet.getLong(4)
+                        this.resultSet.getLong(4),
+                        produit.getNom(),
+                        produit.getPrix()
                      )
             );
         }

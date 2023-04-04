@@ -30,6 +30,11 @@ public class CommandeController implements Initializable {
     @FXML
     private Button deleteButton;
     @FXML
+    private Button ajouterButton;
+    @FXML
+    private Button emptyButton;
+
+    @FXML
     private TableColumn<Commande, Long> col_id;
     @FXML
     private TableColumn<Commande, Long> col_livreur;
@@ -141,7 +146,16 @@ public class CommandeController implements Initializable {
 
     private void showDetails(Commande commande) {
         if (commande != null) {
+
+            if(!commande.getEtat().equals("en cours")){
+                ajouterButton.setDisable(true);
+            }else{
+                ajouterButton.setDisable(false);
+            }
+            updateProdTable();
             try{
+                CommandeDAO cdao = new CommandeDAO();
+                emptyButton.setDisable(cdao.getAllProduits(commande.getId_commande()).size() == 0);
                 livLabel.setText(commande.getLivreur().getNom());
             }catch(SQLException e){
                 throw new RuntimeException(e);
@@ -301,21 +315,47 @@ public class CommandeController implements Initializable {
     protected void onEmptyButtonClick(){
         Commande commande = cmdTab.getSelectionModel().getSelectedItem();
         if(commande!=null) {
-            try {
-                commande.emptyProduits();
-                updateProdTable();
-            }catch(SQLException e){
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.initOwner(HelloApplication.getStage());
-                alert.setTitle("Erreur");
-                alert.setHeaderText("Erreur au niveau de BDD");
+            //On récupère le stage courant
+            Stage stage = (Stage) myAnchorPane.getScene().getWindow();
+            //On fixe le type de la fenêtre de dialogue
+            Alert.AlertType type = Alert.AlertType.CONFIRMATION;
+            //nous instancions un nouveau dialogue d'alerte
+            Alert alert = new Alert(type, "");
 
-                String errMsg = e.toString();
-                alert.setContentText(errMsg);
+            //pour s'assurer que la fenêtre parente est désactivée jusqu'à ce que la confirmation soit faite
+            alert.initModality(Modality.APPLICATION_MODAL);
+            //nous attribuons la boîte de dialogue de confirmation à notre fenêtre actuelle
+            alert.initOwner(stage);
+            //nous définissons le texte du corps de la boîte de dialogue de confirmation
+            String confirmationString = "Êtes-vous sûr de vouloir vider la commande n°" + commande.getId_commande();
+            alert.getDialogPane().setContentText(confirmationString);
+            //nous définissons le texte d'entête de la boîte de dialogue de confirmation
+            alert.getDialogPane().setHeaderText("vider commande");
 
-                alert.showAndWait();
-                throw new RuntimeException(e);
+            //nous définissons la fenêtre de dialogue à afficher et attendons un résultat
+            Optional<ButtonType> result = alert.showAndWait();
+            //on supprime l'élément une fois le bouton "OK" sélectionné
+            if(result.get() == ButtonType.OK) {
+                try {
+                    commande.emptyProduits();
+                    updateProdTable();
+                }catch(SQLException e){
+                    Alert alert2 = new Alert(Alert.AlertType.ERROR);
+                    alert2.initOwner(HelloApplication.getStage());
+                    alert2.setTitle("Erreur");
+                    alert2.setHeaderText("Erreur au niveau de BDD");
+
+                    String errMsg = e.toString();
+                    alert2.setContentText(errMsg);
+
+                    alert2.showAndWait();
+                    throw new RuntimeException(e);
+                }
+            }else if(result.get() == ButtonType.CANCEL){
+                System.out.println("cancled");
             }
+
         }
+
     }
 }

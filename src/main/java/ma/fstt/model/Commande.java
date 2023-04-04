@@ -17,8 +17,6 @@ public class Commande {
     private Timestamp date_debut;
     private Timestamp date_fin;
 
-    private HashMap<Produit, Integer> produits;
-
     public Commande(long id_commande, float km, String client, String etat, Timestamp date_debut, Timestamp date_fin, long id_livreur) {
         this.id_commande = id_commande;
         this.km = km;
@@ -45,13 +43,6 @@ public class Commande {
         return ldao.getOne(this.id_livreur);
     }
 
-    public HashMap<Produit, Integer> getProduits() {
-        return produits;
-    }
-
-    public void setProduits(HashMap<Produit, Integer> produits) {
-        this.produits = produits;
-    }
 
     public String getClient() {
         return client;
