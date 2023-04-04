@@ -94,7 +94,6 @@ public class ProduitDAO extends BaseDAO<Produit> {
         this.resultSet = preparedStatement.executeQuery();
         while(resultSet.next()){
             ProduitDAO pdao = new ProduitDAO();
-            Long id_produit = this.resultSet.getLong(1);
             Produit produit = pdao.getOne(id_produit);
             myList.add(
                     new ProduitCommande(

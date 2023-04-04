@@ -34,7 +34,7 @@
                             <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <BarChart fx:id="barChart2" layoutX="-4.0" layoutY="1.0" prefHeight="402.0" prefWidth="492.0" title="Commandes et quantité moyenne par produit" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <BarChart fx:id="barChart2" layoutX="-4.0" layoutY="1.0" prefHeight="402.0" prefWidth="556.0" title="Commandes et quantité moyenne par produit" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                       <xAxis>
                                         <CategoryAxis label="Produit id/Nom" side="BOTTOM" fx:id="x5" />
                                       </xAxis>
@@ -49,7 +49,7 @@
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <BarChart fx:id="barChart" prefHeight="402.0" prefWidth="492.0" title="Commande par Livreur" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <BarChart fx:id="barChart" prefHeight="402.0" prefWidth="556.0" title="Commande par Livreur" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                       <xAxis>
                                         <CategoryAxis label="Livreur id/nom" side="BOTTOM" fx:id="x" />
                                       </xAxis>
@@ -65,7 +65,7 @@
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <LineChart fx:id="lineChart" layoutX="-8.0" layoutY="1.0" title="vittese de livraison par livreur">
+                                    <LineChart fx:id="lineChart" layoutX="-8.0" layoutY="1.0" prefHeight="402.0" prefWidth="556.0" title="vittese de livraison par livreur" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                       <xAxis>
                                         <CategoryAxis label="Livreur id/Nom" side="BOTTOM" fx:id="x2" />
                                       </xAxis>
@@ -80,7 +80,7 @@
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <LineChart fx:id="lineChart2" layoutX="-8.0" layoutY="1.0" title="Distance parcourue moyenne par livreur">
+                                    <LineChart fx:id="lineChart2" layoutX="-8.0" layoutY="1.0" prefHeight="402.0" prefWidth="556.0" title="Distance parcourue moyenne par livreur" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <xAxis>
                                           <CategoryAxis label="Livreur id/Nom" side="BOTTOM" fx:id="x3" />
                                        </xAxis>

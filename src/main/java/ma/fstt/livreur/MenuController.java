@@ -42,7 +42,7 @@ public class MenuController implements Initializable {
     @FXML
     private CategoryAxis x3;
     @FXML
-    private LineChart<?, ?> barChart2;
+    private BarChart<?, ?> barChart2;
     @FXML
     private NumberAxis y5;
     @FXML
@@ -53,7 +53,8 @@ public class MenuController implements Initializable {
         XYChart.Series seriesCmdLiv = new XYChart.Series();
         XYChart.Series seriesLivVit = new XYChart.Series();
         XYChart.Series seriesLivDistance = new XYChart.Series();
-        //XYChart.Series seriesPrd = new XYChart.Series();
+        XYChart.Series seriesProdCmd = new XYChart.Series();
+        XYChart.Series seriesProdQnt = new XYChart.Series();
 
         List<Livreur> livreurList;
         List<Produit> produitList;
@@ -66,6 +67,23 @@ public class MenuController implements Initializable {
             throw new RuntimeException(e);
         }
         String xVal;
+        String xProdVal;
+        try {
+            System.out.println("One");
+            for (Produit produit : produitList) {
+                xProdVal = produit.getId_produit() + "\n" + produit.getNom();
+                System.out.println(produit.getCommandedProduits());
+                System.out.println(produit.getQauntiteMoy());
+                seriesProdCmd.getData().add(new XYChart.Data(xProdVal, produit.getCommandedProduits()));
+                seriesProdQnt.getData().add(new XYChart.Data(xProdVal, produit.getQauntiteMoy()));
+            }
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+        seriesProdCmd.setName("Nombre Commandes");
+        seriesProdQnt.setName("Quantité moyenne");
+        barChart2.getData().addAll(seriesProdCmd);
+        barChart2.getData().addAll(seriesProdQnt);
         for(Livreur livreur : livreurList){
             float vitesse = 0;
             float distance = 0;
@@ -75,7 +93,7 @@ public class MenuController implements Initializable {
 
                 for (Commande cmd : cdao.getAllById(livreur.getId_livreur())) {
                     if(cmd.getEtat().equals("fini")) {
-                        System.out.println(cmd.getDate_fin().getTime() - cmd.getDate_debut().getTime());
+                        //System.out.println(cmd.getDate_fin().getTime() - cmd.getDate_debut().getTime());
                         double time = (cmd.getDate_fin().getTime() - cmd.getDate_debut().getTime()) / 1000.0 / 3600.0;
                         vitesse += cmd.getKm() / time;
                     }

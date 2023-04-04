@@ -1,6 +1,7 @@
 package ma.fstt.model;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class Produit {
 
@@ -16,11 +17,26 @@ public class Produit {
         this.description = description;
     }
 
-    public int getCommanded() throws SQLException {
+    public int getCommandedProduits() throws SQLException {
 
         ProduitDAO pdao = new ProduitDAO();
 
-        return 0;
+        return pdao.getProduitsCommandes(this.id_produit).size();
+    }
+
+    public float getQauntiteMoy() throws SQLException{
+        float quantiteTotal = 0;
+        ProduitDAO pdao = new ProduitDAO();
+        List<ProduitCommande> myList = pdao.getProduitsCommandes(this.id_produit);
+        for (ProduitCommande produitCommande : myList) {
+            System.out.println("produit n°" + " " + produitCommande.getId_produit());
+            System.out.println("quantite " + produitCommande.getQuantite());
+            quantiteTotal += produitCommande.getQuantite();
+        }
+        if(quantiteTotal!=0) {
+            return quantiteTotal / myList.size();
+        }
+            return 0;
     }
     public long getId_produit() {
         return id_produit;
