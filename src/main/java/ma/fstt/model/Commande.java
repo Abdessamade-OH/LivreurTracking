@@ -17,8 +17,17 @@ public class Commande {
     private Livreur livreur;
     private HashMap<Produit, Integer> produits;
 
-    public Commande(long id_commande, float km, String client, String etat, long id_livreur) {
+    public Commande(long id_commande, float km, String client, String etat,Timestamp date_debut, Timestamp date_fin, long id_livreur) {
         this.id_commande = id_commande;
+        this.km = km;
+        this.client = client;
+        this.etat = etat;
+        this.date_debut = date_debut;
+        this.date_fin = date_fin;
+        this.id_livreur = id_livreur;
+    }
+
+    public Commande(float km, String client, String etat, long id_livreur) {
         this.km = km;
         this.client = client;
         this.etat = etat;

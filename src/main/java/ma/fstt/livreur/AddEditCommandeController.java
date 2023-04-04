@@ -1,51 +1,70 @@
 package ma.fstt.livreur;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
-import ma.fstt.model.Commande;
-import ma.fstt.model.CommandeDAO;
-import ma.fstt.model.Produit;
-import ma.fstt.model.ProduitDAO;
+import ma.fstt.model.*;
 
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddEditCommandeController {
 
     @FXML
-    private TextField livField;
+    private ChoiceBox<Long> livChoice;
     @FXML
     private TextField kmField;
     @FXML
     private TextField clientField;
     @FXML
-    private TextField etatField;
+    private ChoiceBox<String> etatChoice;
     @FXML
     private Label opLabel;
+    @FXML
+    private Label etatLabel;
+
 
     private Stage dialogeStage;
     private Commande commande;
 
+    private String etats[] = {"en cours", "fini", "annulée"};
+
     @FXML
     private void initialize(){
+        etatChoice.getItems().addAll(etats);
+
+        List<Long> myList = new ArrayList<>();
+        try {
+            LivreurDAO ldao = new LivreurDAO();
+            for(Livreur livreur : ldao.getAll()){
+                myList.add(livreur.getId_livreur());
+            }
+            livChoice.getItems().addAll(myList);
+
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+        livChoice.getItems().addAll();
     }
 
     public void setDialogeStage(Stage dialogeStage){
 
         this.dialogeStage = dialogeStage;
         opLabel.setText("Ajouter une commande");
+        etatChoice.setVisible(false);
+        etatLabel.setVisible(false);
     }
     public void setDialogeStage(Stage dialogeStage, Commande commande){
+        etatChoice.setValue("choisir état");
         this.dialogeStage = dialogeStage;
         this.commande = commande;
 
-        this.livField.setText(String.valueOf(commande.getId_livreur()));
+        this.livChoice.setValue(commande.getId_livreur());
         this.kmField.setText(String.valueOf(commande.getKm()));
         this.clientField.setText(commande.getClient());
-        this.etatField.setText(commande.getEtat());
+        this.etatChoice.setValue(commande.getEtat());
         opLabel.setText("Editer une commande");
     }
 
@@ -57,27 +76,31 @@ public class AddEditCommandeController {
                 CommandeDAO cdao = new CommandeDAO();
                 if(commande == null) {
                     cdao.save(new Commande(
-                            0L,
                             Float.parseFloat(kmField.getText()),
                             clientField.getText(),
-                            etatField.getText(),
-                            Long.parseLong(livField.getText())
+                            etatChoice.getValue(),
+                            livChoice.getValue()
                     ));
                 }else {
 
                     commande.setKm(Float.parseFloat(kmField.getText()));
                     commande.setClient(clientField.getText());
-                    commande.setEtat(etatField.getText());
-                    commande.setId_livreur(Long.parseLong(livField.getText()));
+                    commande.setEtat(etatChoice.getValue());
+                    commande.setId_livreur(livChoice.getValue());
+                    if(etatChoice.getValue()=="en cours"){
+                        commande.setDate_fin(null);
+                    }else {
+                        java.util.Date date = new java.util.Date();
+                        commande.setDate_fin(new Timestamp(date.getTime()));
+                    }
 
                     cdao.update(commande);
                 }
                 dialogeStage.close();
             }catch(SQLException e){
-                this.livField.setText("");
                 this.kmField.setText("");
                 this.clientField.setText("");
-                this.etatField.setText("");
+                this.etatChoice.setValue("choisir etat");
                 errorMessage += e.toString();
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.initOwner(dialogeStage);
@@ -99,8 +122,10 @@ public class AddEditCommandeController {
 
     private boolean isInputValid(){
         String errorMessage = "";
-        if( livField.getText()==null || livField.getText().length()==0){
-            errorMessage += "le livreur est vide\n";
+        if( livChoice.getValue()==null){
+            errorMessage += "Aucun livreur sélectioné\n";
+        }else if(livChoice.getItems().size()==0){
+            errorMessage += "Aucun livreur au base de données\n";
         }
         if( kmField.getText()==null || kmField.getText().length()==0) {
             errorMessage += "la distance est vide\n";

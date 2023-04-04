@@ -3,18 +3,18 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="443.0" prefWidth="645.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ma.fstt.livreur.CommandeController">
+<AnchorPane fx:id="myAnchorPane" prefHeight="443.0" prefWidth="645.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ma.fstt.livreur.CommandeController">
     <children>
-        <SplitPane dividerPositions="0.5334448160535117" prefHeight="300.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <SplitPane dividerPositions="0.5147744945567652" prefHeight="300.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                     <children>
                         <TableView fx:id="cmdTab" prefHeight="398.0" prefWidth="316.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <columns>
                                 <TableColumn fx:id="col_id" prefWidth="64.0" resizable="false" text="id" />
-                                <TableColumn fx:id="col_livreur" prefWidth="91.0" text="nom livreur" />
-                                <TableColumn fx:id="col_client" prefWidth="103.0" text="nom client" />
-                        <TableColumn fx:id="col_etat" prefWidth="57.0" text="etat" />
+                                <TableColumn fx:id="col_livreur" prefWidth="71.0" text="id livreur" />
+                                <TableColumn fx:id="col_client" prefWidth="102.0" text="nom client" />
+                        <TableColumn fx:id="col_etat" prefWidth="78.0" text="etat" />
                             </columns>
                         </TableView>
                     </children>
@@ -30,7 +30,6 @@
                             </columnConstraints>
                             <rowConstraints>
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -40,16 +39,17 @@
                             <children>
                                 <Label text="Nom Livreur" />
                                 <Label fx:id="livLabel" text="" GridPane.columnIndex="1" />
-                                <Label text="Etat Commande" GridPane.rowIndex="3" />
-                                <Label fx:id="etatLabel" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Label text="Nom Client" GridPane.rowIndex="2" />
-                        <Label fx:id="clientLabel" layoutX="10.0" layoutY="77.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Label layoutX="10.0" layoutY="107.0" text="Date Debut" GridPane.rowIndex="5" />
-                        <Label fx:id="dateLabel" layoutX="10.0" layoutY="137.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <Label layoutX="10.0" layoutY="137.0" text="Date Fin" GridPane.rowIndex="6" />
-                        <Label fx:id="dateFinLabel" layoutX="10.0" layoutY="167.0" prefHeight="10.0" prefWidth="55.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                        <Label layoutX="10.0" layoutY="107.0" text="Distance(km)" GridPane.rowIndex="4" />
-                        <Label fx:id="kmLabel" layoutX="10.0" layoutY="137.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                <Label text="Etat Commande" GridPane.rowIndex="2" />
+                                <Label fx:id="etatLebel" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label text="Nom Client" GridPane.rowIndex="1" />
+                        <Label fx:id="clientLabel" layoutX="10.0" layoutY="77.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label layoutX="10.0" layoutY="107.0" text="Date Debut" GridPane.rowIndex="4" />
+                        <Label fx:id="dateLabel" layoutX="10.0" layoutY="137.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label layoutX="10.0" layoutY="137.0" text="Date Fin" GridPane.rowIndex="5" />
+                        <Label fx:id="dateFinLabel" layoutX="10.0" layoutY="167.0" prefHeight="16.0" prefWidth="158.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label layoutX="10.0" layoutY="107.0" text="Distance(km)" GridPane.rowIndex="3" />
+                        <Label fx:id="kmLabel" layoutX="10.0" layoutY="137.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label fx:id="dateLabel1" layoutX="160.0" layoutY="137.0" prefWidth="0.0" />
                             </children>
                         </GridPane>
                         <ButtonBar layoutY="402.0" prefHeight="39.0" prefWidth="297.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="402.0">

@@ -23,7 +23,7 @@ public class CommandeDAO extends BaseDAO<Commande>{
 
     @Override
     public void update(Commande object) throws SQLException {
-        String request = "update livreur set km = ?,  client = ?, etat = ?, id_livreur = ?, date_fin = ? where id_commande = ?";
+        String request = "update commande set km = ?,  client = ?, etat = ?, id_livreur = ?, date_fin = ? where id_commande = ?";
         this.preparedStatement = this.connection.prepareStatement(request);
         this.preparedStatement.setFloat(1, object.getKm());
         this.preparedStatement.setString(2, object.getClient());
@@ -58,6 +58,8 @@ public class CommandeDAO extends BaseDAO<Commande>{
                             this.resultSet.getFloat(2),
                             this.resultSet.getString(3),
                             this.resultSet.getString(4),
+                            this.resultSet.getTimestamp(5),
+                            this.resultSet.getTimestamp(6),
                             this.resultSet.getLong(7)
                     )
             );

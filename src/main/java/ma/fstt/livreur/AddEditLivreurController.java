@@ -112,7 +112,7 @@ public class AddEditLivreurController {
                 errorMessage += "Le prix n'est pas valide (Doit être un nombre)";
             }
         }
-        if( teleArea.getValue().equals("Area") ){
+        if( teleArea.getValue().equals("Area") || teleArea.getValue()==null){
             errorMessage += "Le code telephonique du payé";
         }
         if(errorMessage.length()==0) {

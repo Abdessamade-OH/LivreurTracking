@@ -16,18 +16,17 @@
                 <RowConstraints maxHeight="54.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="59.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="59.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="59.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
                 <Label text="Distance(km)" GridPane.rowIndex="1" />
                 <Label text="id livreur" />
-                <TextField fx:id="livField" prefWidth="202.0" GridPane.columnIndex="1" />
                 <TextField fx:id="kmField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <Label text="Nom Client" GridPane.rowIndex="2" />
 
                 <TextField fx:id="clientField" layoutX="99.0" layoutY="63.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                <Label layoutX="10.0" layoutY="89.0" text="etat" GridPane.rowIndex="3" />
-                <TextField fx:id="etatField" layoutX="99.0" layoutY="85.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <Label fx:id="etatLabel" layoutX="10.0" layoutY="89.0" text="etat" GridPane.rowIndex="3" />
+            <ChoiceBox fx:id="livChoice" prefWidth="150.0" GridPane.columnIndex="1" />
+            <ChoiceBox fx:id="etatChoice" layoutX="99.0" layoutY="10.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             </children>
         </GridPane>
         <ButtonBar layoutX="107.0" layoutY="230.0" prefHeight="40.0" prefWidth="220.0">
