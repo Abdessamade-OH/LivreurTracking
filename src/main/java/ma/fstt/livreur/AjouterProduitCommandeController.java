@@ -3,6 +3,7 @@ package ma.fstt.livreur;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import ma.fstt.model.*;
@@ -16,6 +17,8 @@ public class AjouterProduitCommandeController {
     private TextField quantiteField;
     @FXML
     private ChoiceBox<Long> prodChoice;
+    @FXML
+    private Label prodLabel;
     private Stage dialogeStage;
     private Commande commande;
 
@@ -30,9 +33,19 @@ public class AjouterProduitCommandeController {
             }
             prodChoice.getItems().addAll(myList);
 
+            prodChoice.setOnAction(event -> {
+                System.out.println(prodChoice.getValue());
+                try {
+                    prodLabel.setText(pdao.getOne(prodChoice.getValue()).getNom());
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            });
         }catch(SQLException e){
             throw new RuntimeException(e);
         }
+
+
         prodChoice.getItems().addAll();
     }
     public void setDialogeStage(Stage dialogStage, Commande commande) {

@@ -182,6 +182,8 @@ public class CommandeController implements Initializable {
             //on désactive les boutons supprimer et editer si aucun élément n'est sélectionné
             deleteButton.setDisable(true);
             editButton.setDisable(true);
+            ajouterButton.setDisable(true);
+            emptyButton.setDisable(true);
         }
     }
 
@@ -230,6 +232,7 @@ public class CommandeController implements Initializable {
             }else if(result.get() == ButtonType.CANCEL){
                 System.out.println("cancled");
             }
+            updateProdTable();
         }
     }
 

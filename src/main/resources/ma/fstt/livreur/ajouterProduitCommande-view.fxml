@@ -23,7 +23,12 @@
             <Label text="Quantite" GridPane.rowIndex="1" />
             <Label text="Produit" />
             <TextField fx:id="quantiteField" prefHeight="19.0" prefWidth="82.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <ChoiceBox fx:id="prodChoice" prefWidth="150.0" GridPane.columnIndex="1" />
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="15.0" GridPane.columnIndex="1">
+               <children>
+                  <ChoiceBox fx:id="prodChoice" prefHeight="24.0" prefWidth="108.0" />
+                  <Label fx:id="prodLabel" />
+               </children>
+            </HBox>
          </children>
       </GridPane>
       <ButtonBar layoutX="109.0" layoutY="142.0" prefHeight="31.0" prefWidth="220.0">

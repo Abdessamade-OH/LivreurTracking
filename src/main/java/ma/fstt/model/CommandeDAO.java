@@ -116,5 +116,29 @@ public class CommandeDAO extends BaseDAO<Commande>{
         return null;
     }
 
+    public List<Commande> getAllById(Long id_livreur) throws SQLException{
+            List<Commande> myList = new ArrayList<>();
+            String request = "Select * from commande where id_livreur = ?";
+            this.preparedStatement = this.connection.prepareStatement(request);
+            this.preparedStatement.setLong(1, id_livreur);
+
+            this.resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()) {
+                myList.add(
+                        new Commande(
+                                this.resultSet.getLong(1),
+                                this.resultSet.getFloat(2),
+                                this.resultSet.getString(3),
+                                this.resultSet.getString(4),
+                                this.resultSet.getTimestamp(5),
+                                this.resultSet.getTimestamp(6),
+                                this.resultSet.getLong(7)
+                        )
+                );
+            }
+
+        return myList;
+    }
+
 
 }

@@ -11,14 +11,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import ma.fstt.model.Livreur;
-import ma.fstt.model.LivreurDAO;
-import ma.fstt.model.Produit;
+import ma.fstt.model.*;
 
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -38,6 +37,16 @@ public class LivreurController implements Initializable {
     private TableColumn<Livreur, String> col_nom;
     @FXML
     private TableColumn<Livreur, String> col_telephone;
+    @FXML
+    private TableView<Commande> cmdTab;
+    @FXML
+    private TableColumn<Commande, Long> cmdId_col;
+    @FXML
+    private TableColumn<Commande, String> cmdClient_col;
+    @FXML
+    private TableColumn<Commande, Float> cmdDistance_col;
+    @FXML
+    private TableColumn<Commande, String> cmdEtat_col;
     /*@FXML
     private VBox addBox;
     @FXML
@@ -84,6 +93,30 @@ public class LivreurController implements Initializable {
 
     }*/
 
+    public void updateCmdTable(){
+        cmdId_col.setCellValueFactory(new PropertyValueFactory<Commande, Long>("id_commande"));
+        cmdClient_col.setCellValueFactory(new PropertyValueFactory<Commande, String>("client"));
+        cmdDistance_col.setCellValueFactory(new PropertyValueFactory<Commande, Float>("km"));
+        cmdEtat_col.setCellValueFactory(new PropertyValueFactory<Commande, String>("etat"));
+
+        cmdTab.setItems(getCmdData());
+    }
+
+    public ObservableList<Commande> getCmdData(){
+        ObservableList<Commande> myList = FXCollections.observableArrayList();
+        Livreur livreur = livreurTab.getSelectionModel().getSelectedItem();
+        if(livreur!=null) {
+            try {
+                CommandeDAO cdao = new CommandeDAO();
+                for (Commande cmd : cdao.getAllById(livreur.getId_livreur())) {
+                    myList.add(cmd);
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return myList;
+    }
     @FXML
     protected void onBackButtonClick(){
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("menu-view.fxml"));
@@ -129,7 +162,7 @@ public class LivreurController implements Initializable {
     public void initialize(URL connection, ResourceBundle resources){
         //addBox.setVisible(false);
         updateTable();
-
+        updateCmdTable();
         //on ajoute un écouteur à la tableview pour pour obtenir l'élément sélectionné
         livreurTab.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showDetails(newValue));
@@ -144,6 +177,7 @@ public class LivreurController implements Initializable {
 
     private void showDetails(Livreur livreur) {
         if (livreur != null) {
+            updateCmdTable();
             nomLabel.setText(livreur.getNom());
             teleLabel.setText(livreur.getTelephone());
             vehiculeLabel.setText(livreur.getVehicule());
@@ -164,6 +198,7 @@ public class LivreurController implements Initializable {
     protected void onDeleteButtonClick(){
         Livreur livreur = livreurTab.getSelectionModel().getSelectedItem();
         if(livreur!=null) {
+            updateCmdTable();
             //On récupère le stage courant
             Stage stage = (Stage) myAnchorPane.getScene().getWindow();
             //On fixe le type de la fenêtre de dialogue

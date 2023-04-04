@@ -1,5 +1,6 @@
 package ma.fstt.livreur;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -29,6 +30,8 @@ public class AddEditCommandeController {
     private Label opLabel;
     @FXML
     private Label etatLabel;
+    @FXML
+    private Label livNomLabel;
 
     private Stage dialogeStage;
     private Commande commande;
@@ -47,10 +50,21 @@ public class AddEditCommandeController {
             }
             livChoice.getItems().addAll(myList);
 
+            livChoice.setOnAction(event -> {
+                System.out.println(livChoice.getValue());
+                try {
+                    livNomLabel.setText(ldao.getOne(livChoice.getValue()).getNom());
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+
         }catch(SQLException e){
             throw new RuntimeException(e);
         }
         livChoice.getItems().addAll();
+
+
     }
 
     public void setDialogeStage(Stage dialogeStage){
@@ -132,7 +146,7 @@ public class AddEditCommandeController {
             errorMessage += "Aucun livreur au base de données\n";
         }
         if( kmField.getText()==null || kmField.getText().length()==0) {
-            errorMessage += "la distance est vide\n";
+            errorMessage += "le champ de la distance est vide\n";
         }else {
             try {
                 Float.parseFloat(kmField.getText());
@@ -140,6 +154,9 @@ public class AddEditCommandeController {
                 kmField.setText("");
                 errorMessage += "La distance n'est pas valide (Doit être un nombre)";
             }
+        }
+        if(clientField.getText().equals("") || clientField.getText()==null){
+            errorMessage += "le champ client est vide\n";
         }
         if(errorMessage.length()==0) {
             return true;

@@ -6,7 +6,7 @@
 
 <AnchorPane prefHeight="273.0" prefWidth="339.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ma.fstt.livreur.AddEditCommandeController">
     <children>
-        <GridPane layoutX="8.0" layoutY="52.0" prefHeight="184.0" prefWidth="340.0">
+        <GridPane layoutX="8.0" layoutY="56.0" prefHeight="180.0" prefWidth="328.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="144.0" minWidth="10.0" prefWidth="89.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="232.0" minWidth="10.0" prefWidth="216.0" />
@@ -25,8 +25,12 @@
 
                 <TextField fx:id="clientField" layoutX="99.0" layoutY="63.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <Label fx:id="etatLabel" layoutX="10.0" layoutY="89.0" text="etat" GridPane.rowIndex="3" />
-            <ChoiceBox fx:id="livChoice" prefWidth="150.0" GridPane.columnIndex="1" />
             <ChoiceBox fx:id="etatChoice" layoutX="99.0" layoutY="10.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1">
+               <children>
+                  <ChoiceBox fx:id="livChoice" prefHeight="24.0" prefWidth="118.0" />
+                  <Label fx:id="livNomLabel" />
+               </children></HBox>
             </children>
         </GridPane>
         <ButtonBar layoutX="128.0" layoutY="236.0" prefHeight="31.0" prefWidth="220.0">

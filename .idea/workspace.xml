@@ -6,11 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="819bc3b3-9f99-4ff1-92eb-d1cf2e935a58" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ma/fstt/livreur/AddEditCommandeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ma/fstt/livreur/AddEditCommandeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ma/fstt/livreur/AjouterProduitCommandeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ma/fstt/livreur/AjouterProduitCommandeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ma/fstt/livreur/CommandeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ma/fstt/livreur/CommandeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ma/fstt/model/Commande.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ma/fstt/model/Commande.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ma/fstt/livreur/LivreurController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ma/fstt/livreur/LivreurController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ma/fstt/model/CommandeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ma/fstt/model/CommandeDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ma/fstt/model/ProduitCommande.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ma/fstt/model/ProduitCommande.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/ma/fstt/livreur/addEditCommande-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ma/fstt/livreur/addEditCommande-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ma/fstt/livreur/ajouterProduitCommande-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ma/fstt/livreur/ajouterProduitCommande-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ma/fstt/livreur/livreur-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ma/fstt/livreur/livreur-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ma/fstt/livreur/menu-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ma/fstt/livreur/menu-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +105,7 @@
       <workItem from="1680530079110" duration="17678000" />
       <workItem from="1680558722977" duration="12454000" />
       <workItem from="1680572366995" duration="18493000" />
-      <workItem from="1680592043735" duration="1661000" />
+      <workItem from="1680592043735" duration="5638000" />
     </task>
     <servers />
   </component>
@@ -134,12 +138,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/ma/fstt/livreur/CommandeController.java</url>
-          <line>199</line>
+          <line>201</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/ma/fstt/livreur/CommandeController.java</url>
-          <line>315</line>
+          <line>318</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
